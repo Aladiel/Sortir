@@ -1,23 +1,18 @@
-<nav class="navbar navbar-expand-sm justify-content-around">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a href="{{ path('main_home') }}" title="" class="nav-link" >Home</a></li>
+<nav class="Menu_nav">
+    <ul>
 
         {% if is_granted("ROLE_ADMIN") %}
-            <li class="nav-item"><a href="{{ path('admin_dashboard') }}" class="nav-link" >Dashboard</a></li>
+            <li class="nav-item"><a href="{{ path('admin_dashboard') }}" class="nav-link" >Villes</a></li>
+            <li class="nav-item"><a href="{{ path('admin_dashboard') }}" class="nav-link" >Campus</a></li>
         {% endif %}
 
         {% if (app.user) %}
-            <li class="nav-item"><a href="{{ path('sortie_create') }}" class="nav-link" >Créer une nouvelle sortie</a></li>
-        {% endif %}
-    </ul>
-    <ul class="navbar-nav ml-auto">
-        {% if (app.user) %}
+            <li class="nav-item"><a href="{{ path('main_home') }}" title="" class="nav-link" >Accueil</a></li>
+            <li class="nav-item"><a href="{{ path('main_home') }}" title="" class="nav-link" >Mon profil</a></li>
             <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link" title="Clic to log out">Hello {{ app.user.prenom }} ! (Logout)</a></li>
         {% else %}
             <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link" >Se Connecter</a></li>
             <li class="nav-item"><a href="{{ path('app_register') }}" class="nav-link" >S'inscrire</a></li>
         {% endif %}
-
-
     </ul>
 </nav>

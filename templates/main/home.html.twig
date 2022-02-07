@@ -4,6 +4,9 @@
 
 {% block header %}{% endblock %}
 
-{% block body %}HomePage{% endblock %}
+{% block body %}
+    <h2>HomePage</h2>
+    <p><a href="{{ path('sortie_create') }}" class="nav-link" >Créer une nouvelle sortie</a></p>
+{% endblock %}
 
 {% block footer %}{% endblock %}
