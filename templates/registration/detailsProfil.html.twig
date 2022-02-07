@@ -4,7 +4,7 @@
     Détails {{ user.prenom }} | {{ parent() }}
 {% endblock %}
 
-    {% block body %}
+{% block body %}
         <h1>Détails du profile :</h1>
         <hr>
         <h2>{{ user.prenom }}</h2>
@@ -18,10 +18,23 @@
 
         <p>
             <a href="{{ path('main_home') }}">
-                <button class="btn" type="submit">
+                <button class="btn btn-warning" type="submit">
                     Retour
                 </button>
             </a>
         </p>
+        <p>
+            <a href="{{ path('modifier_profil', {'id': user.id}) }}">
+                <button class="btn btn-primary" type="submit">
+                    Modifier
+                </button>
+            </a>
+        </p>
+        <p>
+            <a href="#">
+                <button class="btn btn-danger" type="submit">
+                    Supprimer profil
+                </button>
+            </a>
+        </p>
     {% endblock %}
-

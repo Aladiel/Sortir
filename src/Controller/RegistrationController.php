@@ -65,4 +65,29 @@ class RegistrationController extends AbstractController
             'user' => $user
         ]);
     }
+
+    /**
+     * @Route("/modifier/{id}", name="modifier_profil")
+     */
+    public function modifier(int $id, UserRepository $userRepository,
+                             Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $userRepository->find($id);
+
+        $registrationForm = $this->createForm(RegistrationFormType::class, $user);
+        $registrationForm->handleRequest($request);
+
+        if ($registrationForm->isSubmitted() && $registrationForm->isValid()) {
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le profil a bien été modifié !');
+            return $this->redirectToRoute('details_profil', ['id'=>$user->getId()]);
+        }
+        // renderForm is not supported
+        $this->addFlash('warning', 'Le profil n\'a pas été modifié !');
+        return $this->render('registration/modifierProfil.html.twig', [
+            'user' => $user,
+            'registrationForm' => $registrationForm->createView()
+        ]);
+    }
 }

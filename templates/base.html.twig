@@ -21,8 +21,16 @@
                 <div class="Menu_logo"><a href="{{ path('main_home') }}"><img src="{{ asset('images/logoSortir2.png') }}" alt="Logo Sortir.com"></a></div>
                 {% include('inc/nav.html.twig') %}
             </menu>
-
         </header>
+
+        {# read and display all flash messages #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
 
         <body>
         {% block body %}{% endblock %}
