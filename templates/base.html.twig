@@ -3,20 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width-device-width", user-scalable="yes, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
         <title>{% block title %}Sortir.com{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200;0,700;1,300&family=La+Belle+Aurore&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     </head>
     <body>
         <header>
-        {% block header %}{% endblock %}
+            <menu class="main_menu">
+                <div class="Menu_logo"><h1><img src="{{ asset('images/logoSortir2.png') }}" alt="Logo Sortir.com"></h1></div>
+                {% include('inc/nav.html.twig') %}
+            </menu>
+
         </header>
 
         <body>
@@ -24,7 +29,8 @@
         </body>
 
         <footer>
-        {% block footer %}{% endblock %}
+            {% include('inc/nav.html.twig') %}
+            <div> &copy; {{ "now" | date ("Y") }} Sortir.com</div>
         </footer>
     </body>
 </html>
