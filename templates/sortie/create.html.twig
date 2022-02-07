@@ -1,12 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        {{ form_start(sortieForm) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                {{ form_start(sortieForm) }}
 
-        {{ form_widget(sortieForm) }}
+                {{ form_widget(sortieForm) }}
+                <button>Enregistrer</button>
 
-        {{ form_end(sortieForm) }}
+                {{ form_end(sortieForm) }}
+            </div>
+
+            <div class="col-6">
+                <p>Campus</p>
+                {# {{ form_row(formRandom.campus) }} #}
+            </div>
+        </div>
     </div>
 {% endblock %}
 
