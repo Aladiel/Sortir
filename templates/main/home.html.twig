@@ -6,7 +6,9 @@
 
 {% block body %}
     <h2>HomePage</h2>
-    <p><a href="{{ path('sortie_create') }}" class="nav-link" >Créer une nouvelle sortie</a></p>
+    {% if is_granted("ROLE_USER") %}
+        <p><a href="{{ path('sortie_create') }}" class="nav-link" >Créer une nouvelle sortie</a></p>
+    {% endif %}
 {% endblock %}
 
 {% block footer %}{% endblock %}
