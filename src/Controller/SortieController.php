@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/sortie", name="_sortie")
+ * @Route("/sortie", name="sortie_")
  */
 
 class SortieController extends AbstractController
