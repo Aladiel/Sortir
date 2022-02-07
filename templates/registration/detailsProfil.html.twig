@@ -1,40 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Détails {{ user.prenom }} | {{ parent() }}
+    Profil : {{ user.prenom }} | {{ parent() }}
 {% endblock %}
 
 {% block body %}
-        <h1>Détails du profile :</h1>
-        <hr>
-        <h2>{{ user.prenom }}</h2>
+    <h1>Détails du profil :</h1>
+    <hr>
+    <main class="container">
+        <section class="row">
+            <aside class="col-3">
+                <img src="#" alt="photo de profil">
+            </aside>
+            <article class="col-9">
+                <h2 class="ps-5">{{ user.prenom }}</h2>
 
-        <img src="#" alt="photo de profile">
-
-        <p>Prénom : {{ user.prenom }}</p>
-        <p>Nom : {{ user.nom }}</p>
-        <p>Téléphone : {{ user.telephone }}</p>
-        <p>Email : {{ user.email }}</p>
-
-        <p>
-            <a href="{{ path('main_home') }}">
-                <button class="btn btn-warning" type="submit">
-                    Retour
-                </button>
-            </a>
-        </p>
-        <p>
-            <a href="{{ path('modifier_profil', {'id': user.id}) }}">
-                <button class="btn btn-primary" type="submit">
-                    Modifier
-                </button>
-            </a>
-        </p>
-        <p>
-            <a href="#">
-                <button class="btn btn-danger" type="submit">
-                    Supprimer profil
-                </button>
-            </a>
-        </p>
-    {% endblock %}
+                <p>Prénom : {{ user.prenom }}</p>
+                <p>Nom : {{ user.nom }}</p>
+                <p>Téléphone : {{ user.telephone }}</p>
+                <p>Email : {{ user.email }}</p>
+                <p>Campus : ENI </p>
+                <section>
+                    <p>
+                        <a href="{{ path('modifier_profil', {'id': user.id}) }}">
+                            <button class="btn btn-primary" type="submit">
+                                Modifier
+                            </button>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="{{ path('main_home') }}" class="btn btn-warning">
+                            Retour
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#">
+                            <button class="btn btn-danger" type="submit">
+                                Supprimer profil
+                            </button>
+                        </a>
+                    </p>
+                </section>
+            </article>
+        </section>
+    </main>
+{% endblock %}
