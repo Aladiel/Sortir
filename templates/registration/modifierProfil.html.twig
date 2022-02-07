@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}
+    Modifier {{ user.prenom }} | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <form method="post">
+        <fieldset>
+            <legend>Modifier le profile : </legend>
+            {{ form_start(registrationForm, {attr:{novalidate:'novalidate'}}) }}
+            {{ form_widget(registrationForm) }}
+            <button type="submit">Sauvegarder</button>
+            {{ form_end(registrationForm) }}
+        </fieldset>
+    </form>
+{% endblock %}
+
