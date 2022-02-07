@@ -1,5 +1,9 @@
 body {
-    background: linear-gradient(#000000, #1d1d1d);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to top, #601f73 0%, #006964 100%);
+    background-size: cover;
     background-attachment: fixed;
     color: #EEE;
     font-family: 'Crimson Pro', serif;
@@ -16,10 +20,6 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: #05fdd8;
-    transition: color 0.3s, background-color 0.3s;
-}
 
 img {
     max-width: 100%;
@@ -51,18 +51,8 @@ nav li {
     margin-right: 1rem;
 }
 
-label {
-    display: block;
-}
 
-input,
-textarea,
-select {
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-    width: 150px;
-    max-width: 50%;
-}
+
 
 .flash {
     padding: 20px;
@@ -119,4 +109,98 @@ select {
     color: #909096;
     line-height: 5rem;
     transition: color 1s, background-color 1s;
+}
+
+.Login_Form {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 30px;
+    border: 1px solid #181818;
+    border-radius: 2em;
+    background: #181818;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.Login_Form h1 {
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #006964;
+}
+
+.Login_Form input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.btn1 button {
+    position: relative;
+    width: 100%;
+    background: #222;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    transition: ease-out 0.3s;
+    outline: none;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    overflow: hidden;
+
+}
+
+.btn1 button:hover {
+    box-shadow: 0 5px 30px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+
+.btn1 button:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 900%;
+    width: 120%;
+    transition: all .5s ease-in-out;
+}
+
+.btn1 button:after{
+    background: #006964;
+    transform: translate(-98%, -25%) rotate(45deg);
+
+}
+
+.btn1:hover button:after {
+    transform: translate(-9%, -25%) rotate(45deg);
+}
+
+button span{
+    position: relative;
+    z-index: 1;
+}
+
+.Text_Login a {
+    color: #006964;
+}
+
+.Forget_Mdp a {
+    color: #006964;
+}
+
+.Text_Login {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.Forget_Mdp {
+    display: flex;
 }
