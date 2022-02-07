@@ -18,7 +18,7 @@ class CallApiService {
     public function getVillesData(): array {
         $response = $this -> client -> request(
             'GET',
-            'https://geo.api.gouv.fr/communes?nom=&fields=departement&boost=population&limit=5'
+            'https://geo.api.gouv.fr/communes?nom=na&fields=departement&boost=population&limit=5'
         );
         return $response -> toArray();
     }
