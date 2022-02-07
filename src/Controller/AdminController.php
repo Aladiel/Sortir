@@ -13,11 +13,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/Villes", name="villes")
      */
-    public function index(): Response
+    public function villes(): Response
     {
-        return $this->render('admin/index.html.twig', [
+        return $this->render('admin/villes.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
+
+    /**
+     * @Route("/Campus", name="campus")
+     */
+    public function campus(): Response
+    {
+        return $this->render('admin/campus.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }
