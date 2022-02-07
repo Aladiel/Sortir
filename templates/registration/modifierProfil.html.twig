@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+{% form_theme profilUpdateForm 'bootstrap_5_layout.html.twig' %}
 
 {% block title %}
     Modifier {{ user.prenom }} | {{ parent() }}
@@ -9,10 +9,11 @@
     <form method="post">
         <fieldset>
             <legend>Modifier le profile : </legend>
-            {{ form_start(registrationForm, {attr:{novalidate:'novalidate'}}) }}
-            {{ form_widget(registrationForm) }}
-            <button type="submit">Sauvegarder</button>
-            {{ form_end(registrationForm) }}
+            {{ form_start(profilUpdateForm, {attr:{novalidate:'novalidate'}}) }}
+            {{ form_widget(profilUpdateForm) }}
+            <button class="btn btn-primary" type="submit">Enregistrer</button>
+            <a href="{{ path('details_profil', {'id': app.user.id}) }}" class="btn btn-warning">Annuler</a>
+            {{ form_end(profilUpdateForm) }}
         </fieldset>
     </form>
 {% endblock %}

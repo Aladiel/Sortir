@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ProfilUpdateFormType;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
@@ -74,20 +75,19 @@ class RegistrationController extends AbstractController
     {
         $user = $userRepository->find($id);
 
-        $registrationForm = $this->createForm(RegistrationFormType::class, $user);
-        $registrationForm->handleRequest($request);
+        $profilUpdateForm = $this->createForm(ProfilUpdateFormType::class, $user);
+        $profilUpdateForm->handleRequest($request);
 
-        if ($registrationForm->isSubmitted() && $registrationForm->isValid()) {
+        if ($profilUpdateForm->isSubmitted() && $profilUpdateForm->isValid()) {
             $entityManager->flush();
 
             $this->addFlash('success', 'Le profil a bien été modifié !');
             return $this->redirectToRoute('details_profil', ['id'=>$user->getId()]);
         }
-        // renderForm is not supported
         $this->addFlash('warning', 'Le profil n\'a pas été modifié !');
         return $this->render('registration/modifierProfil.html.twig', [
             'user' => $user,
-            'registrationForm' => $registrationForm->createView()
+            'profilUpdateForm' => $profilUpdateForm->createView()
         ]);
     }
 }
