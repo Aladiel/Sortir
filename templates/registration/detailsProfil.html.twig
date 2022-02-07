@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails {{ user.prenom }} | {{ parent() }}
+{% endblock %}
+
+    {% block body %}
+        <h1>Détails du profile :</h1>
+        <hr>
+        <h2>{{ user.prenom }}</h2>
+
+        <img src="#" alt="photo de profile">
+
+        <p>Prénom : {{ user.prenom }}</p>
+        <p>Nom : {{ user.nom }}</p>
+        <p>Téléphone : {{ user.telephone }}</p>
+        <p>Email : {{ user.email }}</p>
+
+        <p>
+            <a href="{{ path('main_home') }}">
+                <button class="btn" type="submit">
+                    Retour
+                </button>
+            </a>
+        </p>
+    {% endblock %}
+

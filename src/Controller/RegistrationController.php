@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,6 +49,20 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/details/{id}", name="details_profil")
+     */
+    public function details(int $id, UserRepository $userRepository): Response
+    {
+        $user = $userRepository->find($id);
+        if (!$user) {
+            throw $this->createNotFoundException("rien à afficher");
+        }
+        return $this->render('registration/detailsProfil.html.twig', [
+            'user' => $user
         ]);
     }
 }
