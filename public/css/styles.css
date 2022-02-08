@@ -120,7 +120,7 @@ nav li {
     height: 600px;
     width: 1000px;
     margin: 0 auto;
-    margin-top: 10%;
+    margin-top: 5%;
     background: #181818;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -256,6 +256,13 @@ form .txt_field {
 button span{
     position: relative;
     z-index: 1;
+}
+
+.Forget_Remember {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 /* liens */
