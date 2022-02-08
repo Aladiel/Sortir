@@ -90,4 +90,14 @@ class RegistrationController extends AbstractController
             'profilUpdateForm' => $profilUpdateForm->createView()
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function delete(User $user, EntityManagerInterface $entityManager) {
+        $entityManager -> remove($user);
+        $entityManager -> flush();
+
+        return $this -> redirectToRoute('app_login');
+    }
 }

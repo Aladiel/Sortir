@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     paginationEnabled=false
  * )
  */
+#[ApiResource]
 class Ville
 {
     /**
