@@ -98,6 +98,6 @@ class RegistrationController extends AbstractController
         $entityManager -> remove($user);
         $entityManager -> flush();
 
-        return $this -> redirectToRoute('app_login');
+        return $this -> redirectToRoute('app_logout');
     }
 }
