@@ -116,15 +116,23 @@ nav li {
 /* Formulaire Login */
 
 .Login_Form {
-    width: 400px;
+    display: flex;
+    height: 550px;
+    width: 800px;
     margin: 0 auto;
     margin-top: 10%;
-    padding: 30px;
-    border-radius: 10px;
     background: #181818;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    align-content: center;
 }
+
+.Login_Form form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 30px;
+}
+
+/* Titre et texte */
 
 .Login_Form h1 {
     padding: 0 0 20px 0;
@@ -133,10 +141,19 @@ nav li {
     border-bottom: 1px solid #006964;
 }
 
+.Text_Login {
+    padding: 0 0 20px 0;
+    text-align: center;
+}
+
+
+/* Animations des inputs */
+
 form .txt_field {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
+    width: 100%;
 }
 
 .txt_field input{
@@ -183,6 +200,7 @@ form .txt_field {
 }
 
 
+/* Animation de connection */
 
 .btn1 button {
     position: relative;
@@ -233,6 +251,8 @@ button span{
     z-index: 1;
 }
 
+/* liens */
+
 .Text_Login a {
     color: #006964;
 }
@@ -256,4 +276,18 @@ button span{
 
 .Forget_Mdp {
     display: flex;
+}
+
+/* Side de droite */
+.side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 0;
+    overflow: hidden;
+
+}
+.side img {
+    width: 450px;
 }

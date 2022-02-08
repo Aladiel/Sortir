@@ -5,8 +5,8 @@
 {% block body %}
 
     <div class="Login_Form">
-        <h1>Connexion</h1>
         <form method="post">
+            <h1>Bonjour !</h1>
 
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -55,6 +55,9 @@
                 </button>
             </div>
         </form>
+        <div class="side">
+            <img src="{{ asset('images/side1.jpg') }}" alt="Gens heureux">
+        </div>
     </div>
 
 {% endblock %}
