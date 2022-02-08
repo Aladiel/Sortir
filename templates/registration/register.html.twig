@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
 
 {% block title %}{{ parent ()}}  | S'inscrire {% endblock %}
 
@@ -7,6 +8,6 @@
 
     {{ form_start(registrationForm) }}
         {{ form_widget(registrationForm) }}
-        <button type="submit" class="btn-light">Créer</button>
+        <button type="submit" class="btn btn-light">Créer</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
