@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Campus;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,6 +34,16 @@ class ProfilUpdateFormType extends AbstractType
             ->add('email', TextType::class, [
                 'label' => 'Email : ',
                 'required' => false
+            ])
+            ->add('campus', ChoiceType::class, [
+                'label' => 'Campus :',
+                'required' => false,
+                'choices' => [
+                    new Campus('Camp1'),
+                    new Campus('Camp2'),
+                    new Campus('Camp3'),
+                ],
+                'choice_value' => 'name'
             ])
             ->add('plainPassword', RepeatedType::class, [
 

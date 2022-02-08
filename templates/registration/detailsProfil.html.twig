@@ -19,7 +19,7 @@
                 <p>Nom : {{ user.nom }}</p>
                 <p>Téléphone : {{ user.telephone }}</p>
                 <p>Email : {{ user.email }}</p>
-                <p>Campus : ENI </p>
+                <p>Campus : {{ user.campus.name }} </p>
                 <section>
                     <p>
                         <a href="{{ path('modifier_profil', {'id': user.id}) }}">
