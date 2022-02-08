@@ -3,8 +3,11 @@
 {% block title %}{{ parent ()}}  | Se Connecter {% endblock %}
 
 {% block body %}
+
     <div class="Login_Form">
+        <h1>Connexion</h1>
         <form method="post">
+
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -15,14 +18,22 @@
                 </div>
             {% endif %}
 
-            <h1>Sign in</h1>
+
             <div class="Text_Login">
                 <label for="">Vous n'avez pas encore de compte ?<a href="{{ path('app_register')  }}"> Créer votre compte</a>, cela prend moins d'une minute.</label>
             </div>
-            <label for="inputEmail">Email :</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-            <label for="inputPassword">Mot De passe :</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+            <div class="txt_field">
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                <span></span>
+                <label for="inputEmail">Email</label>
+            </div>
+
+            <div class="txt_field">
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <span></span>
+                <label for="inputPassword">Mot De passe</label>
+            </div>
 
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
@@ -31,11 +42,11 @@
             <div class="Forget_Remember">
                     <div class="checkbox mb-3">
                         <label>
-                            <input type="checkbox" name="_remember_me"> Remember me
+                            <input type="checkbox" name="_remember_me"> Se souvenir de moi
                         </label>
                     </div>
                 <div class="Forget_Mdp">
-                    <label for=""><a href="">Mot de passe oublié</a></label>
+                    <label for=""><a href="">Mot de passe oublié ?</a></label>
                 </div>
             </div>
             <div class="btn1">
@@ -45,4 +56,5 @@
             </div>
         </form>
     </div>
+
 {% endblock %}
