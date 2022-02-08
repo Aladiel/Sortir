@@ -8,14 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=VilleRepository::class)
- * @ApiResource(
- *     collectionOperations={"get"={"normalization_context"={"groups"="ville:list"}}},
- *     itemOperations={"get"={"normalization_context"={"groups"="ville:item"}}},
- *     order={"nom"="ASC", "codePostal"="ASC"},
- *     paginationEnabled=false
- * )
  */
-#[ApiResource]
+
 class Ville
 {
     /**
@@ -27,13 +21,11 @@ class Ville
 
     /**
      * @ORM\Column(type="string", length=255)
-     * #[Groups(['ville:list', 'ville:item'])]
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=5)
-     * #[Groups(['ville:list', 'ville:item'])]
      */
     private $codePostal;
 
