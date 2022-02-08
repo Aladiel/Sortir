@@ -4,10 +4,14 @@
 {% block title %}{{ parent ()}}  | S'inscrire {% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm) }}
-        <button type="submit" class="btn btn-light">Créer</button>
-    {{ form_end(registrationForm) }}
+    <form class="p-5 w-75">
+        <fieldset>
+            <legend class="text-center">Inscription</legend>
+            {{ form_start(registrationForm) }}
+                {{ form_widget(registrationForm) }}
+                <button type="submit" class="btn btn-light">Créer</button>
+            {{ form_end(registrationForm) }}
+        </fieldset>
+    </form>
 {% endblock %}
