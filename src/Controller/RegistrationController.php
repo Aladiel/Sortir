@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -92,6 +93,9 @@ class RegistrationController extends AbstractController
      */
     public function modifier(int $id, UserRepository $userRepository,
                              Request $request,
+                             UserPasswordHasherInterface $userPasswordHasher,
+                             UserAuthenticatorInterface $userAuthenticator,
+                             AppAuthenticator $authenticator,
                              EntityManagerInterface $entityManager,
                              SluggerInterface $slugger): Response
     {
@@ -102,17 +106,34 @@ class RegistrationController extends AbstractController
 
         if ($profilUpdateForm->isSubmitted() && $profilUpdateForm->isValid()) {
 
-            $file = $profilUpdateForm->get('photo')->getData();
+            $newFile = $profilUpdateForm->get('newPhoto')->getData();
 
-            if ($file){
-                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            if ($newFile){
+                $originalFilename = pathinfo($newFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
-                $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
-                $file->move(
+                $fileName = $safeFilename.'-'.uniqid().'.'.$newFile->guessExtension();
+                $newFile->move(
                     $this->getParameter('upload_directory'),
                     $fileName
                 );
+                $user->setPhoto(null);
                 $user->setPhoto($fileName);
+            }
+
+            $password = $profilUpdateForm->get('plainPassword')->getData();
+            if ($password){
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $profilUpdateForm->get('plainPassword')->getData()
+                    )
+                );
+                return $userAuthenticator->authenticateUser(
+                    $user,
+                    $authenticator,
+                    $request
+                );
             }
 
             $entityManager->flush();
