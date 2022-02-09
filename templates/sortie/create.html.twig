@@ -1,18 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    {{ parent () }} | Créer une sortie
+{% endblock %}
+
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="Login_Form col-6">
+    <div class="Sortie_Form">
+        <h1>Créer une sortie</h1>
+            <div class="Form_sortie1">
                 {{ form_start(sortieForm) }}
 
                 {{ form_widget(sortieForm) }}
-                <button class="btn-success">Enregistrer</button>
 
                 {{ form_end(sortieForm) }}
             </div>
+            <div class="Form_sortie2">
 
-            <div class="Login_Form col-6">
+                {{ form_start(lieuForm) }}
+                {{ form_widget(lieuForm) }}
+                {{ form_end(lieuForm) }}
+
+            </div>
+            <div class="Form_sortie3">
                 {{ form_start(villeForm) }}
 
                 {{ form_widget(villeForm) }}
@@ -20,13 +29,15 @@
 
                 {{ form_end(villeForm) }}
             </div>
-        </div>
+
+         <button class="btn1">Enregistrer</button>
+         <button class="btn2">Publier la sortie</button>
+         <button class="btn3">Annuler</button>
     </div>
+
 {% endblock %}
 
-{% block title %}
-    Créer une sortie
-{% endblock %}
+
 
 {% block stylesheet %}
     <script

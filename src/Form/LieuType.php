@@ -15,10 +15,9 @@ class LieuType extends AbstractType
     {
         $builder
             ->add('nom', ChoiceType::class, [
-                'choices' => [
-                    'Restaurant',
-                    'Extérieur',
-                    'Piscine'
+                  'choices' => [    0 => 'Restaurant',
+                                    1=>  'Extérieur',
+                                    2=>  'Piscine'
                 ]
             ])
             ->add('rue', TextType::class, [
