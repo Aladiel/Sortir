@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block body %}
-    <form  class="p-5 w-75" method="post">
+    <form  class="m-auto w-50" method="post">
         <fieldset>
-            <legend class="text-center">Modifier le profile : </legend>
+            <legend class="h1 text-center">Modifier le profil : </legend>
             {{ form_start(profilUpdateForm, {attr:{novalidate:'novalidate'}}) }}
             {{ form_widget(profilUpdateForm) }}
             <button class="btn btn-primary" type="submit">Enregistrer</button>
