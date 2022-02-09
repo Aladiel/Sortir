@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Sortie;
+use App\Entity\Ville;
 use App\Form\SortieType;
+use App\Form\VilleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,12 +25,17 @@ class SortieController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $sortie = new Sortie();
+        $ville = new Ville();
         $sortieForm = $this -> createForm(SortieType::class, $sortie);
+        $villeForm = $this -> createForm(VilleType::class, $ville);
 
         $sortieForm -> handleRequest($request);
+        $villeForm -> handleRequest($request);
 
-        if ($sortieForm -> isSubmitted() && $sortieForm -> isValid()) {
+        if (($sortieForm -> isSubmitted() && $sortieForm -> isValid()) && ($villeForm -> isSubmitted() && $villeForm -> isValid())) {
             $entityManager -> persist($sortie);
+            $entityManager -> flush();
+            $entityManager -> persist($ville);
             $entityManager -> flush();
 
             $this -> addFlash('success', 'Sortie ajoutée');
@@ -36,7 +43,8 @@ class SortieController extends AbstractController
 
 
         return $this->render('sortie/create.html.twig', [
-            'sortieForm' => $sortieForm -> createView()
+            'sortieForm' => $sortieForm -> createView(),
+            'villeForm' => $villeForm -> createView()
         ]);
     }
 }

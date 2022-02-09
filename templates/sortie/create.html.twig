@@ -13,8 +13,12 @@
             </div>
 
             <div class="Login_Form col-6">
-                <p>Campus</p>
-                {# {{ form_row(formRandom.campus) }} #}
+                {{ form_start(villeForm) }}
+
+                {{ form_widget(villeForm) }}
+                <div style="display: none; color: #f55;" id="error-message"></div>
+
+                {{ form_end(villeForm) }}
             </div>
         </div>
     </div>
