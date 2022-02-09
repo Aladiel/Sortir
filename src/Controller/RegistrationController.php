@@ -14,13 +14,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class RegistrationController extends AbstractController
 {
     /**
      * @Route("/admin/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request,
+                             UserPasswordHasherInterface $userPasswordHasher,
+                             UserAuthenticatorInterface $userAuthenticator,
+                             AppAuthenticator $authenticator,
+                             EntityManagerInterface $entityManager,
+                             SluggerInterface $slugger): Response
     {
         $user = new User();
         $user->setRoles(["ROLE_USER"]);
@@ -29,6 +35,19 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $form->get('photo')->getData();
+
+            if ($file){
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $fileName
+                );
+                $user->setPhoto($fileName);
+            }
             // encode the plain password
             $user->setPassword(
             $userPasswordHasher->hashPassword(
@@ -71,7 +90,8 @@ class RegistrationController extends AbstractController
      * @Route("/modifier/{id}", name="modifier_profil")
      */
     public function modifier(int $id, UserRepository $userRepository,
-                             Request $request, EntityManagerInterface $entityManager): Response
+                             Request $request, EntityManagerInterface $entityManager,
+                             SluggerInterface $slugger): Response
     {
         $user = $userRepository->find($id);
 
@@ -79,6 +99,20 @@ class RegistrationController extends AbstractController
         $profilUpdateForm->handleRequest($request);
 
         if ($profilUpdateForm->isSubmitted() && $profilUpdateForm->isValid()) {
+
+            $file = $profilUpdateForm->get('photo')->getData();
+
+            if ($file){
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                $file->move(
+                    $this->getParameter('upload_directory'),
+                    $fileName
+                );
+                $user->setPhoto($fileName);
+            }
+
             $entityManager->flush();
 
             $this->addFlash('success', 'Le profil a bien été modifié !');

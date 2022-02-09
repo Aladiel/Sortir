@@ -6,6 +6,7 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /public/bootstrap/
+/public/uploads/
 /public/css/stylePersos.css/
 /var/
 /vendor/
@@ -22,3 +23,7 @@
 ###< phpunit/phpunit ###
 /public/css/stylePersos.css
 /ToDoFile
+
+###> symfony/mailer ###
+MAILER_DSN=smtp://localhost
+###< symfony/mailer ###
