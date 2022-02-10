@@ -1,67 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    Profil : {{ user.prenom }} | {{ parent() }}
-{% endblock %}
+{% block title %}{{ user.prenom }} | Mon Profil{% endblock %}
+
 
 {% block body %}
 
-    <main class="m-auto container">
-        <h1 class="h1 text-center">Détails du profil :</h1>
-        <hr>
-        <section class="d-flex justify-content-around">
-            <aside>
+    <div class="Container_Details_profil">
+        <h1>Détails du profil :</h1>
+        <div class="Details_profil">
+            <div>
                 <img src="{{ asset('uploads/' ~ user.photo ) }}" alt="photo de profil">
-            </aside>
-            <article>
-                <h2 class="ps-5">{{ user.prenom }}</h2>
+            </div>
+            <div class="Form_Details_profil">
+                <h2>{{ user.prenom }}</h2>
 
                 <p>Prénom : {{ user.prenom }}</p>
                 <p>Nom : {{ user.nom }}</p>
                 <p>Téléphone : {{ user.telephone }}</p>
                 <p>Email : {{ user.email }}</p>
                 <p>Campus : {{ user.campus.name }} </p>
-                <hr>
-                <section>
-                    <p>
+                    <div class="Buttons_Details_profil">
                         <a href="{{ path('modifier_profil', {'id': user.id}) }}">
-                            <button class="btn btn-primary" type="submit">
-                                Modifier
-                            </button>
+                        <button class="btn1profil" type="submit">Modifier</button>
                         </a>
-                    </p>
-                    <p>
-                        <a href="{{ path('main_home') }}" class="btn btn-warning">
-                            Retour
+                        <a href="{{ path('main_home') }}" >
+                        <button class="btn2profil">Retour</button>
                         </a>
-                    </p>
-
-                    <button class="btn btn-danger" onclick="document.getElementById('modal-suppr').style.display='block'">
-                        Supprimer
-                    </button>
+                        <button class="btn3profil" onclick="document.getElementById('modal-suppr').style.display='block'">
+                            Supprimer
+                        </button>
+                    </div>
 
                     <div id="modal-suppr" class="modal">
                         <span onclick="document.getElementById('modal-suppr').style.display='none'" class="close" title="Close Modal">
                             ×
                         </span>
                         <form class="modal-content" action="{{ path('delete', {'id': user.id}) }}">
-                            <div class="container">
-                                <h1>Delete Item</h1>
-                                <p>Are you sure you want to delete your item?</p>
+                            <div class="container_modal_delete">
+                                <h1>Supprimer Profil</h1>
+                                <p>Êtes-vous sûr de vouloir supprimer ce profil ?</p>
 
-                                <div class="clearfix">
-                                    <button type="button" onclick="document.getElementById('modal-suppr').style.display='none'" class="cancelbtn">
+                                <div class="Buttons_Modal_profil">
+                                    <button type="button" onclick="document.getElementById('modal-suppr').style.display='none'" class="cancelbtn_profil">
                                         Cancel
                                     </button>
-                                    <button type="button" onclick="location.href='{{ path('delete_user', {'id': user.id}) }}'" class="deletebtn">
+                                    <button type="button" onclick="location.href='{{ path('delete_user', {'id': user.id}) }}'" class="deletebtn_profil">
                                         Delete
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </section>
-            </article>
-        </section>
-    </main>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -726,3 +726,285 @@ button span{
 .Tab_Villes_Admin td {
     background: #adadad;
 }
+
+/* Page Mon profil */
+.Container_Details_profil {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5%;
+    background: #181818;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.Container_Details_profil h1 {
+    flex-direction: row;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    color: #006964;
+    border-bottom: 1px solid #006964;
+    font-weight: 700;
+
+}
+
+.Details_profil {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    margin: auto;
+}
+
+.Details_profil img {
+    width: 150px;
+    height: 150px;
+    margin: 30px;
+    box-shadow: 0 0 20px 0 rgba(5, 253, 216, 0.2), 0 5px 5px 0 rgba(5, 253, 216, 0.24);
+}
+
+.Form_Details_profil h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    border-bottom: 1px solid #006964;
+    padding: 30px;
+    margin-bottom: 30px;
+
+}
+
+.Form_Details_profil p {
+    color: #adadad;
+    font-size: 1.5rem;
+
+}
+
+.Form_Details_profil {
+    margin: 30px;
+    width: 60%;
+}
+
+.Buttons_Details_profil {
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.btn1profil {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #006964;
+    position: relative;
+    z-index: 1;
+}
+
+.btn1profil:hover {
+    color: white;
+    cursor: pointer;
+}
+.btn1profil:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #006964;
+}
+
+.btn1profil:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+.btn2profil {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #31446c;
+    position: relative;
+    z-index: 1;
+}
+
+.btn2profil:hover {
+    color: white;
+    cursor: pointer;
+}
+.btn2profil:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #31446c;
+}
+
+.btn2profil:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+.btn3profil {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #601f73;
+    position: relative;
+    z-index: 1;
+}
+
+.btn3profil:hover {
+    color: white;
+    cursor: pointer;
+}
+.btn3profil:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #601f73;
+}
+
+.btn3profil:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+/*Fenêtre Modal Suppression Profil*/
+
+.modal-content{
+    display: flex;
+    justify-content: center;
+    margin-left: 25%;
+    margin-top: 15%;
+    width: 50%;
+}
+.container_modal_delete {
+    text-align: center;
+    background: #181818;
+    box-shadow: 0 0 20px 0 rgba(204, 62, 44, 0.2), 0 5px 5px 0 rgba(204, 62, 44, 0.24);
+}
+.container_modal_delete h1 {
+    color: #cc3e2c;
+    border-bottom: 1px solid #cc3e2c;
+
+}
+
+.container_modal_delete p {
+    color: #cc3e2c;
+    font-weight: 700;
+}
+/*Boutons de la Fenêtre Modal Suppression Profil*/
+.Buttons_Modal_profil {
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cancelbtn_profil {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #31446c;
+    position: relative;
+    z-index: 1;
+}
+
+.cancelbtn_profil:hover {
+    color: white;
+    cursor: pointer;
+}
+.cancelbtn_profil:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #31446c;
+}
+
+.cancelbtn_profil:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+.deletebtn_profil {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #cc3e2c;
+    position: relative;
+    z-index: 1;
+}
+
+.deletebtn_profil:hover {
+    color: white;
+    cursor: pointer;
+}
+.deletebtn_profil:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #cc3e2c;
+}
+
+.deletebtn_profil:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
