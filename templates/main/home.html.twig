@@ -5,7 +5,7 @@
 {% block body %}
 
     <body>
-    <div class="box-date-nom d-flex justify-content-end">
+    <div class="Container_Badge_Participant">
         <div class="Badge_Participant">
             <div>
                 <img src="{{ asset('uploads/' ~ app.user.photo ) }}" alt="photo de profil">
@@ -18,88 +18,204 @@
             </p>
         </div>
     </div>
-    <p class="col font-weight-bold h5">Filtrer les sorties</p>
-    <div class="row">
-        <div class="col font-weight-bold text-left">
-            <div class="input-group">
-                <select class="custom-select" id="">
-                    <option selected value="Toutes les villes">
-                        Choisir votre campus
-                    </option>
-                    <option id="{}" value="{}"></option>
-                </select>
-            </div>
-            <div class="input-group mt-2">
-                <input
-                        class="form-control"
-                        id=""
-                        type="text"
-                        placeholder="Rechercher une sortie"
-                />
-            </div>
-            <div class="input-group mt-2">
-                <div class="input-group-prepend">
-                    <label class="input-group-text">Date de debut :</label>
+
+    <div class="Container_Filtre_Home">
+        <h2 class="col font-weight-bold h5">Filtrer les sorties</h2>
+        <div class="row">
+            <div class="col font-weight-bold text-left">
+                <div class="input-group">
+                    <select class="custom-select" id="">
+                        <option selected value="Toutes les villes">
+                            Choisir votre campus
+                        </option>
+                        <option id="{}" value="{}"></option>
+                    </select>
                 </div>
-                <input class="form-control" type="date" id="" />
-            </div>
-            <div class="input-group mt-2">
-                <div class="input-group-prepend">
-                    <label class="input-group-text">Date de fin :</label>
+                <div class="input-group mt-2">
+                    <input
+                            class="form-control"
+                            id=""
+                            type="text"
+                            placeholder="Rechercher une sortie"
+                    />
                 </div>
-                <input class="form-control" type="date" id="" />
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Date de debut :</label>
+                    </div>
+                    <input class="form-control" type="date" id="" />
+                </div>
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Date de fin :</label>
+                    </div>
+                    <input class="form-control" type="date" id="" />
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="form-check mt-auto">
-                <input type="checkbox" />
-                <label class="form-check-label">
-                    Sorties dont je suis l'organisateur/rice
-                </label>
+            <div class="col">
+                <div class="form-check mt-auto">
+                    <input type="checkbox" />
+                    <label class="form-check-label">
+                        Sorties dont je suis l'organisateur/rice
+                    </label>
+                </div>
+                <div class="form-check mt-2">
+                    <input type="checkbox" />
+                    <label class="form-check-label">
+                        Sorties auxquelles je suis inscrit/e
+                    </label>
+                </div>
+                <div class="form-check mt-2">
+                    <input type="checkbox" />
+                    <label class="form-check-label">
+                        Sorties auxquelles je ne suis pas inscrit/e
+                    </label>
+                </div>
+                <div class="form-check mt-2">
+                    <input type="checkbox" />
+                    <label class="form-check-label"> Sorties passée </label>
+                </div>
             </div>
-            <div class="form-check mt-2">
-                <input type="checkbox" />
-                <label class="form-check-label">
-                    Sorties auxquelles je suis inscrit/e
-                </label>
+            <div class="col">
+                <button class="btn1FiltreHome">Rechercher</button>
             </div>
-            <div class="form-check mt-2">
-                <input type="checkbox" />
-                <label class="form-check-label">
-                    Sorties auxquelles je ne suis pas inscrit/e
-                </label>
-            </div>
-            <div class="form-check mt-2">
-                <input type="checkbox" />
-                <label class="form-check-label"> Sorties passée </label>
-            </div>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary w-50 h-50">Rechercher</button>
         </div>
     </div>
-    <div class="row mt-5">
+
+    <div class="Container_Tab_Home">
+                <table class="Table_home">
+                    <thead>
+                        <tr>
+                            <th>Nom de la sortie</th>
+                            <th>Date</th>
+                            <th>Cloture</th>
+                            <th>inscrits/places</th>
+                            <th>Etat</th>
+                            <th>Inscrit</th>
+                            <th>Organisateur</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                         <tr>
+                             <td>Bowling</td>
+                             <td>11/06/2022 19:00</td>
+                             <td>11/06/2022</td>
+                             <td>6/8</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Michou.C</td>
+                             <td>Afficher</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                         <tr>
+                             <td>Pic-nic</td>
+                             <td>13/06/2022 12:00</td>
+                             <td>13/06/2022</td>
+                             <td>12/12</td>
+                             <td>Ouvert</td>
+                             <td>X</td>
+                             <td>Admin.A</td>
+                             <td>Afficher - Annuler</td>
+                         </tr>
+                     </tbody>
+                </table>
+
+
         <div class="col">
-            <table class="table">
-                <thead class="">
-                <tr>
-                    <th>Nom de la sortie</th>
-                    <th>Date</th>
-                    <th>Cloture</th>
-                    <th>inscrits/places</th>
-                    <th>Etat</th>
-                    <th>Inscrit</th>
-                    <th>Organisateur</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-            </table>
+            {% if is_granted("ROLE_USER") %}
+                <a href="{{ path('sortie_create') }}"  ><button class="btn1Home">Créer une nouvelle sortie</button></a>
+            {% endif %}
         </div>
-    </div>
-    <div class="col">
-        {% if is_granted("ROLE_USER") %}
-            <button class="btn btn-primary w-25"><a href="{{ path('sortie_create') }}" class="nav-link" >Créer une nouvelle sortie</a></button>
-        {% endif %}
     </div>
     </body>
     {% block footer %}{% endblock %}
