@@ -1265,5 +1265,13 @@ button span{
 
 }
 
+.Badge_Participant img {
+    margin-left: 25%;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 20px 0 rgba(5, 253, 216, 0.2), 0 5px 5px 0 rgba(5, 253, 216, 0.24);
+}
+
 
 

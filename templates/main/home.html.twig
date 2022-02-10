@@ -8,7 +8,7 @@
     <div class="box-date-nom d-flex justify-content-end">
         <div class="Badge_Participant">
             <div>
-                {{ app.user.photo }}
+                <img src="{{ asset('uploads/' ~ app.user.photo ) }}" alt="photo de profil">
             </div>
             <p class="col font-weight-bold text-left h5">
                 Participant : {{ app.user.prenom }}.
