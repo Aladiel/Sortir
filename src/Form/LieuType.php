@@ -14,12 +14,8 @@ class LieuType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', ChoiceType::class, [
-                  'choices' => [
-                      'Restaurant' => 'Restaurant',
-                      'Extérieur' => 'Extérieur',
-                      'Piscine' => 'Piscine'
-                ]
+            ->add('nom', TextType::class, [
+                  'label' => "Lieu : "
             ])
             ->add('rue', TextType::class, [
                 'label' => 'Rue : '
