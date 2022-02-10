@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <body>
+    <div class="box-date-nom d-flex justify-content-end">
+        <div>
+            <p class="col font-weight-bold text-left h5">
+                Date du jour : 19/07/2018
+            </p>
+            <p class="col font-weight-bold text-left h5">
+                Participant : Jeanine L.
+            </p>
+        </div>
+    </div>
+    <p class="col font-weight-bold h5">Filtrer les sorties</p>
+    <div class="row">
+        <div class="col font-weight-bold text-left">
+            <div class="input-group">
+                <select class="custom-select" id="">
+                    <option selected value="Toutes les villes">
+                        Choisir votre campus
+                    </option>
+                    <option id="{}" value="{}"></option>
+                </select>
+            </div>
+            <div class="input-group mt-2">
+                <input
+                        class="form-control"
+                        id=""
+                        type="text"
+                        placeholder="Rechercher une sortie"
+                />
+            </div>
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Date de debut :</label>
+                </div>
+                <input class="form-control" type="date" id="" />
+            </div>
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Date de fin :</label>
+                </div>
+                <input class="form-control" type="date" id="" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-check mt-auto">
+                <input type="checkbox" />
+                <label class="form-check-label">
+                    Sorties dont je suis l'organisateur/rice
+                </label>
+            </div>
+            <div class="form-check mt-2">
+                <input type="checkbox" />
+                <label class="form-check-label">
+                    Sorties auxquelles je suis inscrit/e
+                </label>
+            </div>
+            <div class="form-check mt-2">
+                <input type="checkbox" />
+                <label class="form-check-label">
+                    Sorties auxquelles je ne suis pas inscrit/e
+                </label>
+            </div>
+            <div class="form-check mt-2">
+                <input type="checkbox" />
+                <label class="form-check-label"> Sorties passée </label>
+            </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary w-50 h-50">Rechercher</button>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <table class="table">
+                <thead class="">
+                <tr>
+                    <th>Nom de la sortie</th>
+                    <th>Date</th>
+                    <th>Cloture</th>
+                    <th>inscrits/places</th>
+                    <th>Etat</th>
+                    <th>Inscrit</th>
+                    <th>Organisateur</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="col">
+        <button class="btn btn-primary w-25">Créer une sortie</button>
+    </div>
+    </body>
+
+{% endblock %}
