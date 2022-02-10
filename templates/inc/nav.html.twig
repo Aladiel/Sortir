@@ -10,7 +10,7 @@
         {% if (app.user) %}
             <li class="nav-item"><a href="{{ path('main_home') }}" title="" class="nav-link" >Accueil</a></li>
             <li class="nav-item"><a href="{{ path('details_profil', {'id': app.user.id}) }}" title="voir profil" class="nav-link">Mon profil</a></li>
-            <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link" title="Clic to log out">Hello {{ app.user.prenom }} ! (Logout)</a></li>
+            <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link" title="Clic to log out"><div class="a_logout">Logout</div></a></li>
         {% endif %}
     </ul>
 </nav>

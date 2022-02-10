@@ -85,6 +85,15 @@ nav li {
     padding: 0;
 }
 
+.a_logout {
+
+    transition: color 1s, background-color 1s;
+}
+
+.a_logout:hover {
+    color: #cc3e2c;
+}
+
 .Main_menu a {
     color: #809096;
     text-decoration: none;
@@ -104,10 +113,6 @@ nav li {
 
 }
 
-.Menu_nav {
-
-}
-
 .Menu_nav a {
     text-align: center;
     width: 100%;
@@ -117,6 +122,8 @@ nav li {
     line-height: 5rem;
     transition: color 1s, background-color 1s;
 }
+
+
 
 
 
