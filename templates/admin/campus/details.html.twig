@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Campus{% endblock %}
+
+{% block body %}
+
+    <div class="container m-auto">
+        <h1>Campus :</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>N°</th>
+                <td>{{ campus.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ campus.name }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('campus_list') }}" class="btn btn-light">
+            Retour
+        </a>
+
+        <p>
+            <a href="{{ path('campus_modifier', {'id': campus.id}) }}" class="btn btn-primary">
+                Modifier
+            </a>
+        </p>
+
+        <form method="post" action="{{ path('campus_supprimer', {'id': campus.id}) }}"
+              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce campus ?');">
+            <button class="btn btn-danger">Supprimer</button>
+        </form>
+
+    </div>
+
+{% endblock %}
+

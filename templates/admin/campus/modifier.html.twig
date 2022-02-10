@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Modifier Campus{% endblock %}
+
+{% block body %}
+
+    <div class="container m-auto w-50">
+
+        {{ form_start(form) }}
+            <h1 class="h1 text-center">Modifier le Campus :</h1>
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary">
+                {{ button_label|default('Enregistrer') }}
+            </button>
+        {{ form_end(form) }}
+
+        <p>
+            <br>
+            <a href="{{ path('campus_list') }}" class="btn btn-light">
+                Retour
+            </a>
+        </p>
+
+        <form method="post" action="{{ path('campus_supprimer', {'id': campus.id}) }}"
+              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce campus ?');">
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+
+    </div>
+{% endblock %}

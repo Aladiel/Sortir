@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% form_theme campusForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}New Campus{% endblock %}
+
+{% block body %}
+
+    <div class="container m-auto w-50">
+
+        {{ form_start(campusForm) }}
+            <h1 class="h1 text-center">Créer un nouveau Campus :</h1>
+            {{ form_widget(campusForm) }}
+            <button type="submit" class="btn btn-primary">
+                {{ button_label|default('Enregistrer') }}
+            </button>
+        {{ form_end(campusForm) }}
+
+        <p>
+            <a href="{{ path('campus_list') }}" class="btn btn-light">
+                Retour
+            </a>
+        </p>
+
+    </div>
+
+{% endblock %}

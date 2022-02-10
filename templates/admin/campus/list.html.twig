@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Campus liste{% endblock %}
+
+{% block body %}
+    <div class="container m-auto">
+        <h1 class="h1 text-center">Liste des Campus :</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>N°</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for campus in campuses %}
+                <tr>
+                    <td>{{ campus.id }}</td>
+                    <td>{{ campus.name }}</td>
+                    <td>
+                        <a href="{{ path('campus_details', {'id': campus.id}) }}"
+                           class="btn btn-primary">
+                            Détails
+                        </a>
+                        <a href="{{ path('campus_modifier', {'id': campus.id}) }}"
+                           class="btn btn-light">
+                            Modifier
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun campus trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('campus_creer') }}" class="btn btn-warning">
+            Créer un campus
+        </a>
+
+    </div>
+{% endblock %}
