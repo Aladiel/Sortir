@@ -1,18 +1,22 @@
 {% extends 'base.html.twig' %}
-{% form_theme profilUpdateForm 'bootstrap_5_layout.html.twig' %}
+
 
 {% block title %}
     Modifier {{ user.prenom }} | {{ parent() }}
 {% endblock %}
 
 {% block body %}
-
-    {{ form_start(profilUpdateForm, {attr:{class:'m-auto w-50', novalidate:'novalidate'}}) }}
-        <h1 class="h1 text-center">Modifier le profil : </h1>
-        {{ form_widget(profilUpdateForm) }}
-        <button class="btn btn-primary" type="submit">Enregistrer</button>
-        <a href="{{ path('details_profil', {'id': app.user.id}) }}" class="btn btn-warning">Annuler</a>
-    {{ form_end(profilUpdateForm) }}
-
+    <div class="Container_Modifier_profil">
+        <h1>Modifier le profil : </h1>
+        {{ form_start(profilUpdateForm) }}
+            {{ form_widget(profilUpdateForm) }}
+        {{ form_end(profilUpdateForm) }}
+        <div class="Buttons_Modifier_profil">
+            <button class="btn1ModifierProfil" type="submit">Enregistrer</button>
+            <a href="{{ path('details_profil', {'id': app.user.id}) }}">
+                <button class="btn2ModifierProfil">Annuler</button>
+            </a>
+        </div>
+    </div>
 {% endblock %}
 

@@ -9,6 +9,13 @@ body {
     font-family: 'Crimson Pro', serif;
 }
 
+footer {
+    margin: 30px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
 .container {
     max-width: 1000px;
     margin: auto;
@@ -1007,4 +1014,141 @@ button span{
     opacity: 1;
     z-index: -1;
 }
+
+/* Page Modifier Mon profil */
+.Container_Modifier_profil {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5%;
+    background: #181818;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.Container_Modifier_profil h1 {
+    flex-direction: row;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    color: #006964;
+    border-bottom: 1px solid #006964;
+    font-weight: 700;
+
+}
+
+.Container_Modifier_profil form {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+}
+
+.Container_Modifier_profil label {
+    left: 5px;
+    color: #adadad;
+    font-size: 16px;
+    pointer-events: none;
+    margin-bottom: 10px;
+}
+
+.Container_Modifier_profil input {
+    border: none;
+    outline: none;
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.Container_Modifier_profil select {
+    border: none;
+    outline: none;
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/*Boutons de la Fenêtre Modal Suppression Profil*/
+.Buttons_Modifier_profil {
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.btn1ModifierProfil {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #006964;
+    position: relative;
+    z-index: 1;
+}
+
+.btn1ModifierProfil:hover {
+    color: white;
+    cursor: pointer;
+}
+.btn1ModifierProfil:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #006964;
+}
+
+.btn1ModifierProfil:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+.btn2ModifierProfil {
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #31446c;
+    position: relative;
+    z-index: 1;
+}
+
+.btn2ModifierProfil:hover {
+    color: white;
+    cursor: pointer;
+}
+.btn2ModifierProfil:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #31446c;
+}
+
+.btn2ModifierProfil:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
 

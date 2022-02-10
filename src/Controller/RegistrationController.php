@@ -141,7 +141,6 @@ class RegistrationController extends AbstractController
             $this->addFlash('success', 'Le profil a bien été modifié !');
             return $this->redirectToRoute('details_profil', ['id'=>$user->getId()]);
         }
-        $this->addFlash('warning', 'Le profil n\'a pas été modifié !');
         return $this->render('registration/modifierProfil.html.twig', [
             'user' => $user,
             'profilUpdateForm' => $profilUpdateForm->createView()
