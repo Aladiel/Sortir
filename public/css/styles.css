@@ -499,3 +499,230 @@ button span{
     opacity: 1;
     z-index: -1;
 }
+
+/* Page Campus */
+
+.Campus_Admin {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5%;
+    background: #181818;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.Campus_Admin h1 {
+    flex-direction: row;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    color: #006964;
+    border-bottom: 1px solid #006964;
+    font-weight: 700;
+}
+/* Filtre */
+.Filtrer_Campus_Admin {
+    background: none;
+    margin: 10px;
+    padding: 5px;
+    width: 50%;
+}
+
+.Filtrer_Campus_Admin h2 {
+    color: #adadad;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+.Filtrer_Campus_Admin label {
+    color: #adadad;
+    font-size: 16px;
+}
+
+.Filtrer_Campus_Admin input {
+    padding: 0 5px;
+    margin-left: 20px;
+    height: 30px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+
+
+.Filtrer_Campus_Admin_btn1 {
+    width: 150px;
+    height: 30px;
+    margin-left: 20px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #006964;
+    position: relative;
+    z-index: 1;
+}
+
+.Filtrer_Campus_Admin_btn1:hover {
+    color: white;
+    cursor: pointer;
+}
+.Filtrer_Campus_Admin_btn1:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #006964;
+}
+
+.Filtrer_Campus_Admin_btn1:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+/* Tableau */
+.Tab_Campus_Admin {
+    width: 100%;
+    padding: 20px;
+}
+
+.Tab_Campus_Admin table {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+.Tab_Campus_Admin thead {
+    text-align: center;
+    color: #006964;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.Tab_Campus_Admin tbody {
+    text-align: center;
+}
+.Tab_Campus_Admin td {
+    background: #adadad;
+}
+
+/* Page Villes */
+
+.Villes_Admin {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5%;
+    background: #181818;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.Villes_Admin h1 {
+    flex-direction: row;
+    padding: 20px 0 20px 0;
+    text-align: center;
+    color: #006964;
+    border-bottom: 1px solid #006964;
+    font-weight: 700;
+}
+/* Filtre */
+.Filtrer_Villes_Admin {
+    background: none;
+    margin: 10px;
+    padding: 5px;
+    width: 50%;
+}
+
+.Filtrer_Villes_Admin h2 {
+    color: #adadad;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+.Filtrer_Villes_Admin label {
+    color: #adadad;
+    font-size: 16px;
+}
+
+.Filtrer_Villes_Admin input {
+    padding: 0 5px;
+    margin-left: 20px;
+    height: 30px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+
+
+.Filtrer_Villes_Admin_btn1 {
+    width: 150px;
+    height: 30px;
+    margin-left: 20px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #006964;
+    position: relative;
+    z-index: 1;
+}
+
+.Filtrer_Villes_Admin_btn1:hover {
+    color: white;
+    cursor: pointer;
+}
+.Filtrer_Villes_Admin_btn1:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #006964;
+}
+
+.Filtrer_Villes_Admin_btn1:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+/* Tableau */
+
+.Tab_Villes_Admin {
+    width: 100%;
+    padding: 20px;
+}
+
+.Tab_Villes_Admin table {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+.Tab_Villes_Admin thead {
+    text-align: center;
+    color: #006964;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.Tab_Villes_Admin tbody {
+    text-align: center;
+}
+.Tab_Villes_Admin td {
+    background: #adadad;
+}
