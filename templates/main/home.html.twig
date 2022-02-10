@@ -6,12 +6,15 @@
 
     <body>
     <div class="box-date-nom d-flex justify-content-end">
-        <div>
-            <p class="col font-weight-bold text-left h5">
-                Date du jour :
-            </p>
+        <div class="Badge_Participant">
+            <div>
+                {{ app.user.photo }}
+            </div>
             <p class="col font-weight-bold text-left h5">
                 Participant : {{ app.user.prenom }}.
+            </p>
+            <p class="col font-weight-bold text-left h5">
+                Date du jour :
             </p>
         </div>
     </div>
