@@ -29,6 +29,7 @@ class VilleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Ville::class,
+            'attr' => ['id' => 'ville_form'],
         ]);
     }
 }

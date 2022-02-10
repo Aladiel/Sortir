@@ -48,6 +48,7 @@ class SortieType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Sortie::class,
+            'attr' => ['id' => 'sortie_form'],
         ]);
     }
 }

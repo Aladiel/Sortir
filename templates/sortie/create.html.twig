@@ -9,21 +9,22 @@
         <h1>Créer une sortie</h1>
         <div class="Sortie_Form">
             <div class="Form_sortie1">
-                {{ form_start(sortieForm) }}
+
+                {{ form_start(sortieForm, {'id': 'form_sortie'}) }}
 
                 {{ form_widget(sortieForm) }}
 
                 {{ form_end(sortieForm) }}
             </div>
             <div class="Side_droite_sortie">
-                <div class="Form_sortie2">
+                {# <div class="Form_sortie2">
                     {{ form_start(lieuForm) }}
 
                     {{ form_widget(lieuForm) }}
 
 
                     {{ form_end(lieuForm) }}
-                </div>
+                </div> #}
                 <div class="Form_sortie3">
                     {{ form_start(villeForm) }}
 
@@ -35,8 +36,8 @@
             </div>
         </div>
 
-        <div class="Sortie_btn">
-         <button class="btn1sortie">Enregistrer</button>
+       <div class="Sortie_btn">
+         <button class="btn1sortie" type="submit" id="btn_validerSortie">Enregistrer</button>
          <button class="btn2sortie">Publier la sortie</button>
          <button class="btn3sortie">Annuler</button>
         </div>
