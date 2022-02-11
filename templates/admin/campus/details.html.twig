@@ -39,7 +39,7 @@
                         <span onclick="document.getElementById('modal-suppr').style.display='none'" class="close" title="Close Modal">
                             ×
                         </span>
-                <form class="modal-content" action="{{ path('campus_supprimer', {'id': campus.id}) }}">
+                <form class="modal-content" method="post" action="{{ path('campus_supprimer', {'id': campus.id}) }}">
                     <div class="container_modal_delete">
                         <h1>Supprimer Campus</h1>
                         <p>Êtes-vous sûr de vouloir supprimer ce Campus ?</p>
@@ -48,7 +48,7 @@
                             <button type="button" onclick="document.getElementById('modal-suppr').style.display='none'" class="cancelbtn_profil">
                                 Retour
                             </button>
-                            <button type="button" onclick="location.href='{{ path('campus_supprimer', {'id': campus.id}) }}'" class="deletebtn_profil">
+                            <button type="submit" onclick="location.href='{{ path('campus_supprimer', {'id': campus.id}) }}'" class="deletebtn_profil">
                                 Supprimer
                             </button>
                         </div>
