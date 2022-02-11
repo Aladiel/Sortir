@@ -5,22 +5,19 @@
 
 {% block body %}
 
-    <div class="container m-auto w-50">
-
-        {{ form_start(campusForm) }}
-            <h1 class="h1 text-center">Créer un nouveau Campus :</h1>
-            {{ form_widget(campusForm) }}
-            <button type="submit" class="btn btn-primary">
+    <div class="Container_Form_Create_Campus">
+        <h1>Créer un nouveau Campus :</h1>
+            {{ form_start(campusForm) }}
+                {{ form_widget(campusForm) }}
+            {{ form_end(campusForm) }}
+        <div class="Buttons_Form_register">
+            <button type="submit" class="Campus_Admin_btn1">
                 {{ button_label|default('Enregistrer') }}
-            </button>
-        {{ form_end(campusForm) }}
-
-        <p>
-            <a href="{{ path('campus_list') }}" class="btn btn-light">
-                Retour
-            </a>
-        </p>
-
+            </button >
+                <a href="{{ path('campus_list') }}" >
+                    <button class="Tab_Campus_Admin_btn1">Retour</button>
+                </a>
+        </div>
     </div>
 
 {% endblock %}

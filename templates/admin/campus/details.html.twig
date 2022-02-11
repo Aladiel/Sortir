@@ -47,10 +47,10 @@
 
                         <div class="Buttons_Modal_profil">
                             <button type="button" onclick="document.getElementById('modal-suppr').style.display='none'" class="cancelbtn_profil">
-                                Cancel
+                                Retour
                             </button>
-                            <button type="button" onclick="location.href='{{ path('', {'id': campus.id}) }}'" class="deletebtn_profil">
-                                Delete
+                            <button type="button" onclick="location.href='{{ path('campus_supprimer', {'id': campus.id}) }}'" class="deletebtn_profil">
+                                Supprimer
                             </button>
                         </div>
                     </div>
