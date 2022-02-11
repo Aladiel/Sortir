@@ -27,17 +27,7 @@ class CampusController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="details", methods={"GET"})
-     */
-    public function details(Campus $campus): Response
-    {
-        return $this->render('admin/campus/details.html.twig', [
-            'campus' => $campus
-        ]);
-    }
-
-    /**
-     * @Route("/creer", name="creer")
+     * @Route("/creer", name="creer", methods={"GET", "POST"})
      */
     public function creer(Request $request,
                           EntityManagerInterface $entityManager): Response
@@ -52,11 +42,24 @@ class CampusController extends AbstractController
             $entityManager->persist($campus);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Le campus a bien été créé !');
             return $this->redirectToRoute('campus_details', ['id' => $campus->getId()]);
+        } else {
+            $this->addFlash('warning', 'Le campus n\'a pas été créé !');
         }
 
-        return $this->render(':admin/campus:creer.html.twig', [
-            'campusFrom'=> $campusForm->createView()
+        return $this->render('admin/campus/creer.html.twig', [
+            'campusForm'=> $campusForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="details", methods={"GET"})
+     */
+    public function details(Campus $campus): Response
+    {
+        return $this->render('admin/campus/details.html.twig', [
+            'campus' => $campus
         ]);
     }
 
@@ -72,8 +75,11 @@ class CampusController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'Le campus a bien été modifié !');
             return $this->redirectToRoute('campus_list', [],
                 Response::HTTP_SEE_OTHER);
+        } else {
+            $this->addFlash('warning', 'Le campus n\'a pas été modifié !');
         }
 
         return $this->renderForm('admin/campus/modifier.html.twig', [
@@ -95,6 +101,7 @@ class CampusController extends AbstractController
         $entityManager->remove($campus);
         $entityManager->flush();
 
+        $this->addFlash('success', 'Le campus a bien été supprimé !');
         return $this->redirectToRoute('campus_list', [],
             Response::HTTP_SEE_OTHER);
     }

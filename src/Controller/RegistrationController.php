@@ -62,11 +62,14 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
+            $this->addFlash('success', 'Le profil a bien été créé !');
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
+        } else {
+            $this->addFlash('warning', 'Le profil n\'a pas été créé !');
         }
 
         return $this->render('admin/register.html.twig', [
@@ -140,6 +143,8 @@ class RegistrationController extends AbstractController
 
             $this->addFlash('success', 'Le profil a bien été modifié !');
             return $this->redirectToRoute('details_profil', ['id'=>$user->getId()]);
+        } else {
+            $this->addFlash('warning', 'Le profil n\'a pas été modifié !');
         }
         return $this->render('registration/modifierProfil.html.twig', [
             'user' => $user,
@@ -151,9 +156,12 @@ class RegistrationController extends AbstractController
      * @Route("/delete/{id}", name="delete")
      */
     public function delete(User $user, EntityManagerInterface $entityManager) {
+
         $entityManager -> remove($user);
         $entityManager -> flush();
 
+        $this->addFlash('success', 'Le profil a bien été supprimé !');
         return $this -> redirectToRoute('app_logout');
+
     }
 }
