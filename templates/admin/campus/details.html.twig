@@ -24,13 +24,12 @@
         </div>
 
         <div class="Buttons_Details_profil">
-            <a href="{{ path('campus_list') }}">
-                <button class="Tab_Campus_Admin_btn1">Retour</button>
-            </a>
             <a href="{{ path('campus_modifier', {'id': campus.id}) }}" >
-                <button class="Campus_Admin_btn1">Modifier</button>
+                <button class="btn1profil">Modifier</button>
             </a>
-            </p>
+            <a href="{{ path('campus_list') }}">
+                <button class="btn2profil" >Retour</button>
+            </a>
                 <button class="btn3profil" onclick="document.getElementById('modal-suppr').style.display='block'">
                     Supprimer
                 </button>

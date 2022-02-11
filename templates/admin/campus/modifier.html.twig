@@ -5,27 +5,43 @@
 
 {% block body %}
 
-    <div class="container m-auto w-50">
-
+    <div class="Container_Form_Create_Campus">
+        <h1>Modifier le Campus :</h1>
         {{ form_start(form) }}
-            <h1 class="h1 text-center">Modifier le Campus :</h1>
             {{ form_widget(form) }}
-            <button type="submit" class="btn btn-primary">
+        {{ form_end(form) }}
+        <div class="Buttons_Form_register">
+            <button type="submit" class="btn1profil">
                 {{ button_label|default('Enregistrer') }}
             </button>
-        {{ form_end(form) }}
-
-        <p>
-            <br>
-            <a href="{{ path('campus_list') }}" class="btn btn-light">
-                Retour
+            <a href="{{ path('campus_list') }}">
+                <button class="btn2profil" >Retour</button>
             </a>
-        </p>
+            <button class="btn3profil" onclick="document.getElementById('modal-suppr').style.display='block'">
+                Supprimer
+            </button>
+        </div>
 
-        <form method="post" action="{{ path('campus_supprimer', {'id': campus.id}) }}"
-              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce campus ?');">
-            <button type="submit" class="btn btn-danger">Supprimer</button>
-        </form>
+        <div id="modal-suppr" class="modal">
+                        <span onclick="document.getElementById('modal-suppr').style.display='none'" class="close" title="Close Modal">
+                            ×
+                        </span>
+            <form class="modal-content" action="{{ path('campus_supprimer', {'id': campus.id}) }}">
+                <div class="container_modal_delete">
+                    <h1>Supprimer Campus</h1>
+                    <p>Êtes-vous sûr de vouloir supprimer ce Campus ?</p>
+
+                    <div class="Buttons_Modal_profil">
+                        <button type="button" onclick="document.getElementById('modal-suppr').style.display='none'" class="cancelbtn_profil">
+                            Retour
+                        </button>
+                        <button type="button" onclick="location.href='{{ path('campus_supprimer', {'id': campus.id}) }}'" class="deletebtn_profil">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
     </div>
 {% endblock %}
