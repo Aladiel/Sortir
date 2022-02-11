@@ -14,9 +14,9 @@
             <button type="submit" class="Campus_Admin_btn1">
                 {{ button_label|default('Enregistrer') }}
             </button >
-            <a href="{{ path('campus_list') }}" >
-                <button class="Tab_Campus_Admin_btn1">Retour</button>
-            </a>
+            <button onclick="{{ path('campus_list') }}" class="Tab_Campus_Admin_btn1">
+                Retour
+            </button>
         </div>
 
             {{ form_end(campusForm) }}
