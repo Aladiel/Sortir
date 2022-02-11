@@ -68,7 +68,7 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request
             );
-        } else {
+        } else if ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash('warning', 'Le profil n\'a pas été créé !');
         }
 
@@ -143,7 +143,7 @@ class RegistrationController extends AbstractController
 
             $this->addFlash('success', 'Le profil a bien été modifié !');
             return $this->redirectToRoute('details_profil', ['id'=>$user->getId()]);
-        } else {
+        } else if ($profilUpdateForm->isSubmitted() && !$profilUpdateForm->isValid()) {
             $this->addFlash('warning', 'Le profil n\'a pas été modifié !');
         }
         return $this->render('registration/modifierProfil.html.twig', [

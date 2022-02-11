@@ -45,7 +45,7 @@ class CampusController extends AbstractController
 
             $this->addFlash('success', 'Le campus a bien été créé !');
             return $this->redirectToRoute('campus_details', ['id' => $campus->getId()]);
-        } else {
+        } else if ($campusForm->isSubmitted() && !$campusForm->isValid()) {
             $this->addFlash('warning', 'Le campus n\'a pas été créé !');
         }
 
@@ -79,7 +79,7 @@ class CampusController extends AbstractController
             $this->addFlash('success', 'Le campus a bien été modifié !');
             return $this->redirectToRoute('campus_list', [],
                 Response::HTTP_SEE_OTHER);
-        } else {
+        } else if ($form->isSubmitted() && !$form->isValid()){
             $this->addFlash('warning', 'Le campus n\'a pas été modifié !');
         }
 
