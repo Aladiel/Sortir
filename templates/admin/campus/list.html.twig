@@ -1,46 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Campus liste{% endblock %}
+{% block title %}Hello {{ app.user.prenom }}! | Campus{% endblock %}
 
 {% block body %}
-    <div class="container m-auto">
-        <h1 class="h1 text-center">Liste des Campus :</h1>
+    <div class="Campus_Admin">
+        <h1>Liste des Campus :</h1>
 
-        <table class="table">
-            <thead class="text-white">
-            <tr class="text-white">
-                <th>N°</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-            </thead>
-            <tbody class="text-white">
-            {% for campus in campuses %}
+        <div class="Filtrer_Campus_Admin">
+            <h2>Filtrer les sites</h2>
+            <label for="">Le nom contient :
+                <input type="text">
+            </label>
+            <button class="Filtrer_Campus_Admin_btn1">Rechercher</button>
+        </div>
+
+        <div class="Tab_Campus_Admin">
+            <table>
+                <thead>
                 <tr>
-                    <td>{{ campus.id }}</td>
-                    <td>{{ campus.name }}</td>
-                    <td>
-                        <a href="{{ path('campus_details', {'id': campus.id}) }}"
-                           class="btn btn-primary">
-                            Détails
-                        </a>
-                        <a href="{{ path('campus_modifier', {'id': campus.id}) }}"
-                           class="btn btn-light">
-                            Modifier
-                        </a>
-                    </td>
+                    <th>N°</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
                 </tr>
-            {% else %}
-                <tr>
-                    <td colspan="3">Aucun campus trouvé</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for campus in campuses %}
+                    <tr>
+                        <td>{{ campus.id }}</td>
+                        <td>{{ campus.name }}</td>
+                        <td>
+                            <a href="{{ path('campus_details', {'id': campus.id}) }}">
+                                <button class="Tab_Campus_Admin_btn1">Détails</button>
+                            </a>
+                            <a href="{{ path('campus_modifier', {'id': campus.id}) }}">
+                                <button class="Tab_Campus_Admin_btn2">Modifier</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Aucun campus trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-        <a href="{{ path('campus_creer') }}" class="btn btn-warning">
-            Créer un campus
-        </a>
-
+            <a href="{{ path('campus_creer') }}" >
+                <button class="Campus_Admin_btn1">Créer un campus</button>
+            </a>
     </div>
 {% endblock %}

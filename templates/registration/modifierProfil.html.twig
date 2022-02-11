@@ -10,13 +10,14 @@
         <h1>Modifier le profil : </h1>
         {{ form_start(profilUpdateForm) }}
             {{ form_widget(profilUpdateForm) }}
-        {{ form_end(profilUpdateForm) }}
         <div class="Buttons_Modifier_profil">
             <button class="btn1ModifierProfil" type="submit">Enregistrer</button>
             <a href="{{ path('details_profil', {'id': app.user.id}) }}">
                 <button class="btn2ModifierProfil">Annuler</button>
             </a>
         </div>
+        {{ form_end(profilUpdateForm) }}
+
     </div>
 {% endblock %}
 
