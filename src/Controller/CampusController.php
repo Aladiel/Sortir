@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Campus;
 use App\Form\CampusType;
 use App\Repository\CampusRepository;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -98,12 +99,21 @@ class CampusController extends AbstractController
         $campus = new Campus();
         $campus = $campusRepository->find($id);
 
-        $entityManager->remove($campus);
-        $entityManager->flush();
+        try {
+            $entityManager->remove($campus);
+            $entityManager->flush();
 
-        $this->addFlash('success', 'Le campus a bien été supprimé !');
-        return $this->redirectToRoute('campus_list', [],
-            Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Le campus a bien été supprimé !');
+            return $this->redirectToRoute('campus_list', [],
+                Response::HTTP_SEE_OTHER);
+        } catch (ForeignKeyConstraintViolationException $f) {
+            $this->addFlash('foreignkey_constraint_violation', sprintf(
+                'Le campus ne peut pas être supprimé car il est lié à un alumnus - %s',
+                $f->getMessage()
+            ));
+
+            return $this->redirectToRoute('campus_list');
+        }
     }
 
 }
