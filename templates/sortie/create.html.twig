@@ -10,10 +10,25 @@
         <div class="Sortie_Form">
             <div class="Form_sortie1">
 
-                {{ form_start(sortieForm, {'id': 'form_sortie'}) }}
+                {{ form_start(sortieForm) }}
 
-                {{ form_widget(sortieForm) }}
+                {{ form_row(sortieForm.nom) }}
+                {{ form_row(sortieForm.dateDebut) }}
+                {{ form_row(sortieForm.dateLimiteInscription) }}
+                {{ form_row(sortieForm.nbInscriptionMax) }}
+                {{ form_row(sortieForm.duree) }}
+                {{ form_row(sortieForm.infosSortie) }}
 
+                {{ form_row(sortieForm.codePostal) }}
+                {{ form_row(sortieForm.ville) }}
+                {{ form_row(sortieForm.lieu) }}
+                {{ form_row(sortieForm.rue) }}
+                <datalist id="list_rues"></datalist>
+                {{ form_row(sortieForm.latitude) }}
+                {{ form_row(sortieForm.longitude) }}
+
+
+                    <button type="submit">Submit</button>
                 {{ form_end(sortieForm) }}
             </div>
             <div class="Side_droite_sortie">
@@ -24,7 +39,7 @@
 
 
                     {{ form_end(lieuForm) }}
-                </div> #}
+                </div>
                 <div class="Form_sortie3">
                     {{ form_start(villeForm) }}
 
@@ -32,15 +47,15 @@
                     <div style="display: none; color: #f55;" id="error-message"></div>
 
                     {{ form_end(villeForm) }}
-                </div>
+                </div>#}
             </div>
         </div>
 
-       <div class="Sortie_btn">
+      {# <div class="Sortie_btn">
          <button class="btn1sortie" type="submit" id="btn_validerSortie">Enregistrer</button>
          <button class="btn2sortie">Publier la sortie</button>
          <button class="btn3sortie">Annuler</button>
-        </div>
+        </div> #}
     </div>
 
 {% endblock %}

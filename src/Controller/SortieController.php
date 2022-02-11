@@ -5,9 +5,7 @@ namespace App\Controller;
 use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Entity\Ville;
-use App\Form\LieuType;
 use App\Form\SortieType;
-use App\Form\VilleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,20 +28,22 @@ class SortieController extends AbstractController
         $ville = new Ville();
         $lieu = new Lieu();
         $sortieForm = $this -> createForm(SortieType::class, $sortie);
-        $villeForm = $this -> createForm(VilleType::class, $ville);
-        $lieuForm = $this -> createForm(LieuType::class, $lieu);
+        $cpo = $sortieForm->get('codePostal')->getData();
+        $nomVille = $sortieForm->get('ville')-> getData();
+        $nomRue = $sortieForm->get('rue')-> getData();
+        $latitude = $sortieForm->get('latitude')-> getData();
+        $longitude = $sortieForm->get('longitude')-> getData();
+     /*   $ville -> setCodePostal($cpo);
+        $ville -> setNom($nomVille);
+        $lieu -> setRue($nomRue);
+        $lieu -> setLatitude($latitude);
+        $lieu -> setLongitude($longitude);*/
 
 
         $sortieForm -> handleRequest($request);
-        $villeForm -> handleRequest($request);
-        $lieuForm -> handleRequest($request);
 
-        if (($sortieForm -> isSubmitted() && $sortieForm -> isValid()) && ($villeForm -> isSubmitted() && $villeForm -> isValid())) {
+        if ($sortieForm -> isSubmitted() && $sortieForm -> isValid())  {
             $entityManager -> persist($sortie);
-            $entityManager -> flush();
-            $entityManager -> persist($ville);
-            $entityManager -> flush();
-            $entityManager -> persist($lieu);
             $entityManager -> flush();
 
             $this -> addFlash('success', 'Sortie ajoutée');
@@ -51,9 +51,7 @@ class SortieController extends AbstractController
 
 
         return $this->render('sortie/create.html.twig', [
-            'sortieForm' => $sortieForm -> createView(),
-            'villeForm' => $villeForm -> createView(),
-            'lieuForm' => $lieuForm -> createView()
+            'sortieForm' => $sortieForm -> createView()
         ]);
     }
 }
