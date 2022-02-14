@@ -639,7 +639,7 @@ button span{
     color: white;
     transition: ease-out 0.3s;
     outline: none;
-    border: 3px solid #31446c;
+    border: 3px solid #006964;
     position: relative;
     z-index: 1;
 }
@@ -657,7 +657,7 @@ button span{
     bottom: 0;
     opacity: 0;
     content: "";
-    background-color: #31446c;
+    background-color: #006964;
 }
 
 .Tab_Campus_Admin_btn1:hover:before {
@@ -677,7 +677,7 @@ button span{
     color: white;
     transition: ease-out 0.3s;
     outline: none;
-    border: 3px solid #601f73;
+    border: 3px solid #31446c;
     position: relative;
     z-index: 1;
 }
@@ -695,7 +695,7 @@ button span{
     bottom: 0;
     opacity: 0;
     content: "";
-    background-color: #601f73;
+    background-color: #31446c;
 }
 
 .Tab_Campus_Admin_btn2:hover:before {
@@ -738,6 +738,43 @@ button span{
 }
 
 .Campus_Admin_btn1:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+.btnSupprimerCampus {
+    width: 150px;
+    height: 30px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #601f73;
+    position: relative;
+    z-index: 1;
+}
+
+.btnSupprimerCampus:hover {
+    color: white;
+    cursor: pointer;
+}
+.btnSupprimerCampus:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #601f73;
+}
+
+.btnSupprimerCampus:hover:before {
     transition: 0.5s all ease;
     left: 0;
     right: 0;
@@ -1061,12 +1098,15 @@ button span{
 
 /*Fenêtre Modal Suppression Profil*/
 
-.modal-content{
-    display: flex;
-    justify-content: center;
+#modal-suppr {
     margin-left: 25%;
     margin-top: 15%;
     width: 50%;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: center;
 }
 .container_modal_delete {
     text-align: center;

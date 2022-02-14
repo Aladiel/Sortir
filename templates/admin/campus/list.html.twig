@@ -35,14 +35,16 @@
                             <a href="{{ path('campus_modifier', {'id': campus.id}) }}">
                                 <button class="Tab_Campus_Admin_btn2">Modifier</button>
                             </a>
-                            <button class="btn3profil" onclick="document.getElementById('modal-suppr').style.display='block'">
+                            <button class="btnSupprimerCampus" onclick="document.getElementById('modal-suppr').style.display='block'">
                                 Supprimer
                             </button>
                         </td>
+
+
                         <div id="modal-suppr" class="modal">
-                        <span onclick="document.getElementById('modal-suppr').style.display='none'" class="close" title="Close Modal">
-                            ×
-                        </span>
+                            <span onclick="document.getElementById('modal-suppr').style.display='none'" class="close" title="Close Modal">
+                                ×
+                            </span>
                             <form class="modal-content" method="post" action="{{ path('campus_supprimer', {'id': campus.id}) }}">
                                 <div class="container_modal_delete">
                                     <h1>Supprimer Campus</h1>
@@ -59,6 +61,7 @@
                                 </div>
                             </form>
                         </div>
+
                     </tr>
                 {% else %}
                     <tr>
