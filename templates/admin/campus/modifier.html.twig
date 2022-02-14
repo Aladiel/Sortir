@@ -14,37 +14,12 @@
             <button type="submit" class="btn1profil">
                 {{ button_label|default('Enregistrer') }}
             </button>
-            <button onclick="{{ path('campus_list') }}" class="btn2profil" >
-                Retour
-            </button>
-            <button class="btn3profil" onclick="document.getElementById('modal-suppr').style.display='block'">
-                Supprimer
-            </button>
+            <a href="{{ path('campus_details', {'id': campus.id}) }}" class="btn btn2profil" >
+                Annuler
+            </a>
         </div>
 
         {{ form_end(form) }}
-
-
-        <div id="modal-suppr" class="modal">
-                        <span onclick="document.getElementById('modal-suppr').style.display='none'" class="close" title="Close Modal">
-                            ×
-                        </span>
-            <form class="modal-content" method="post" action="{{ path('campus_supprimer', {'id': campus.id}) }}">
-                <div class="container_modal_delete">
-                    <h1>Supprimer Campus</h1>
-                    <p>Êtes-vous sûr de vouloir supprimer ce Campus ?</p>
-
-                    <div class="Buttons_Modal_profil">
-                        <button type="button" onclick="document.getElementById('modal-suppr').style.display='none'" class="cancelbtn_profil">
-                            Retour
-                        </button>
-                        <button type="submit" onclick="location.href='{{ path('campus_supprimer', {'id': campus.id}) }}'" class="deletebtn_profil">
-                            Supprimer
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
 
     </div>
 {% endblock %}
