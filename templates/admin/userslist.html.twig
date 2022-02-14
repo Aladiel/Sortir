@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des Alumni
+{% endblock %}
+
+{% block body %}
+
+    <div class="m-auto w-75 justify-content-around">
+        <h1 class="h1">Liste des Alumni :</h1>
+
+        <div class="Filtrer_Campus_Admin">
+            <h2>Filtrer les alumni</h2>
+            <label for="">Le nom contient :
+                <input type="text">
+            </label>
+            <button class="btn btn-dark">Rechercher</button>
+        </div>
+
+        <div>
+            <table class="table table-hover text-white">
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Campus</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>{{ user.campus.name }}</td>
+                        <td class="btn-group">
+                            <a href="{{ path('details_profil', {'id': user.id}) }}">
+                                <button class="btn btn-primary">Détails</button>
+                            </a>
+                            <form method="post" action="{{ path('delete', {'id': app.user.id}) }}"
+                                  onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer définitivement votre compte ?');">
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Aucun campus trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ path('app_register') }}" >
+            <button class="btn btn-light">Inscrire un alumnus</button>
+        </a>
+    </div>
+
+{% endblock %}
+

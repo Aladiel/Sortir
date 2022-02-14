@@ -52,8 +52,7 @@ class SortieType extends AbstractType
                 'label' => 'Ville : ',
                 'class' => Ville::class,
                 'choice_label' => 'nom',
-                'mapped' => false,
-                'attr' => ['list' => 'list_rues']
+                'mapped' => false
             ])
             ->add('lieu', EntityType::class, [
                 'label' => 'Lieu : ',
@@ -63,7 +62,8 @@ class SortieType extends AbstractType
             ])
             ->add('rue', TextType::class, [
                 'label' => 'Rue : ',
-                'mapped' => false
+                'mapped' => false,
+                'attr' => ['list' => 'list_rues']
             ])
             ->add('latitude', TextType::class, [
                 'label' => 'Latitude : ',
@@ -82,7 +82,9 @@ class SortieType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Sortie::class,
-            'attr' => ['id' => 'sortie_form'],
+            'attr' => ['id' => 'sortie_form',
+                'novalidate' => 'novalidate'],
+
         ]);
     }
 }

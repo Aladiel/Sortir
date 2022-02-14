@@ -28,11 +28,15 @@ class SortieController extends AbstractController
         $ville = new Ville();
         $lieu = new Lieu();
         $sortieForm = $this -> createForm(SortieType::class, $sortie);
+
+
         $cpo = $sortieForm->get('codePostal')->getData();
         $nomVille = $sortieForm->get('ville')-> getData();
         $nomRue = $sortieForm->get('rue')-> getData();
         $latitude = $sortieForm->get('latitude')-> getData();
         $longitude = $sortieForm->get('longitude')-> getData();
+        //dd($longitude);
+
      /*   $ville -> setCodePostal($cpo);
         $ville -> setNom($nomVille);
         $lieu -> setRue($nomRue);
@@ -43,8 +47,10 @@ class SortieController extends AbstractController
         $sortieForm -> handleRequest($request);
 
         if ($sortieForm -> isSubmitted() && $sortieForm -> isValid())  {
+            dd($sortieForm);
             $entityManager -> persist($sortie);
             $entityManager -> flush();
+
 
             $this -> addFlash('success', 'Sortie ajoutée');
         }

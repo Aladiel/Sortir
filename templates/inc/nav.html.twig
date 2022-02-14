@@ -2,7 +2,7 @@
     <ul>
 
         {% if is_granted("ROLE_ADMIN") %}
-            <li class="nav-item"><a href="{{ path('app_register') }}" class="nav-link" >Nouvel Alumnus</a></li>
+            <li class="nav-item"><a href="{{ path('users_list') }}" class="nav-link" >Alumni</a></li>
             <li class="nav-item"><a href="{{ path('admin_villes') }}" class="nav-link" >Villes</a></li>
             <li class="nav-item"><a href="{{ path('campus_list') }}" class="nav-link" >Campus</a></li>
         {% endif %}

@@ -78,6 +78,16 @@ class RegistrationController extends AbstractController
     }
 
     /**
+     * @Route("/admin/list", name="users_list", methods={"GET"})
+     */
+    public function list(UserRepository $userRepository): Response
+    {
+        return $this->render('admin/userslist.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/details/{id}", name="details_profil")
      */
     public function details(int $id, UserRepository $userRepository): Response
