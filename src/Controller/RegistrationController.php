@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\User;
 use App\Form\ProfilUpdateFormType;
 use App\Form\RegistrationFormType;
+use App\Form\SearchType;
 use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -80,9 +82,14 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/admin/list", name="users_list", methods={"GET"})
      */
-    public function list(UserRepository $userRepository): Response
+    public function list(UserRepository $userRepository, Request $request): Response
     {
+        $data = new User();
+        $form = $this->createForm(SearchType::class, $data);
+        $form ->handleRequest($request);
+
         return $this->render('admin/userslist.html.twig', [
+            'form' => $form->createView(),
             'users' => $userRepository->findAll(),
         ]);
     }

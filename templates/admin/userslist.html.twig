@@ -8,13 +8,9 @@
 
     <div class="m-auto w-75 justify-content-around">
         <h1 class="h1">Liste des Alumni :</h1>
-
         <div class="Filtrer_Campus_Admin">
             <h2>Filtrer les alumni</h2>
-            <label for="">Le nom contient :
-                <input type="text">
-            </label>
-            <button class="btn btn-dark">Rechercher</button>
+            {% include 'inc/Filtre_Alumni.html.twig' with {form: form} only %}
         </div>
 
         <div>

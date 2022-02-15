@@ -36,22 +36,29 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return User[] Returns an array of User objects
+    */
+
+    public function findSearch(User $search)
     {
-        return $this->createQueryBuilder('u')
+        $query = $this
+            ->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+            ->setParameter('val', $search)
             ->orderBy('u.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+
+        if (!empty($search->nom)) {
+                $query = $query
+                    ->andWhere('p.name LIKE :nom')
+                    ->setParameter('nom', "%{$search->nom}%");
+        }
+
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?User
@@ -62,6 +69,28 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+    */
+
+
+    /*
+    // /**
+    // * @return User[]
+    // */
+    /*
+    public function findSearch(User $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('u')
+            ->select('c', 'p')
+            ->join('p.users', 'c');
+
+        if (!empty($search->nom)) {
+            $query = $query
+                ->andWhere('p.name LIKE :nom')
+                ->setParameter('nom', "%{$search->nom}%");
+        }
+
     }
     */
 }
