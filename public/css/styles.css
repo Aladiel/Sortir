@@ -745,6 +745,84 @@ button span{
     z-index: -1;
 }
 
+.Creer_Campus_Admin_btn1 {
+    width: 150px;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #601f73;
+    position: relative;
+    z-index: 1;
+}
+
+.Creer_Campus_Admin_btn1:hover {
+    color: white;
+    cursor: pointer;
+}
+.Creer_Campus_Admin_btn1:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #601f73;
+}
+
+.Creer_Campus_Admin_btn1:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+.Modifier_Campus_Admin_btn1 {
+    width: 150px;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    background: none;
+    color: white;
+    transition: ease-out 0.3s;
+    outline: none;
+    border: 3px solid #601f73;
+    position: relative;
+    z-index: 1;
+}
+
+.Modifier_Campus_Admin_btn1:hover {
+    color: white;
+    cursor: pointer;
+}
+.Modifier_Campus_Admin_btn1:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #601f73;
+}
+
+.Modifier_Campus_Admin_btn1:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+
+
 .btnSupprimerCampus {
     width: 150px;
     height: 30px;
