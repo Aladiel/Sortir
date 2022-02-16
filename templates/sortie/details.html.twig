@@ -20,11 +20,11 @@
             </div>
             <div>
                 <p>Campus : {{ sortie.campus.name }}</p>
-                <p>Lieu : </p>
-                <p>Rue : </p>
-                <p>Code postal : </p>
-                <p>Latitude : </p>
-                <p>Longitude : </p>
+                <p>Lieu : {{ sortie.lieu.nom }}</p>
+                <p>Rue : {{ sortie.lieu.rue}} </p>
+                <p>Code postal : {{ sortie.lieu.ville.codePostal }} {{ sortie.lieu.ville.nom }}</p>
+                <p>Latitude : {{ sortie.lieu.latitude }}</p>
+                <p>Longitude : {{ sortie.lieu.longitude }}</p>
             </div>
         </div>
 
