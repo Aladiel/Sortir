@@ -30,24 +30,21 @@ class SortieController extends AbstractController
         $sortieForm = $this -> createForm(SortieType::class, $sortie);
 
 
-        $cpo = $sortieForm->get('codePostal')->getData();
-        $nomVille = $sortieForm->get('ville')-> getData();
-        $nomRue = $sortieForm->get('rue')-> getData();
-        $latitude = $sortieForm->get('latitude')-> getData();
-        $longitude = $sortieForm->get('longitude')-> getData();
-        //dd($longitude);
-
-     /*   $ville -> setCodePostal($cpo);
-        $ville -> setNom($nomVille);
-        $lieu -> setRue($nomRue);
-        $lieu -> setLatitude($latitude);
-        $lieu -> setLongitude($longitude);*/
-
-
         $sortieForm -> handleRequest($request);
 
         if ($sortieForm -> isSubmitted() && $sortieForm -> isValid())  {
-            dd($sortieForm);
+            $cpo = $sortieForm->get('codePostal')->getData();
+            $nomVille = $sortieForm->get('ville')-> getData();
+            $nomRue = $sortieForm->get('rue')-> getData();
+            $latitude = $sortieForm->get('latitude')-> getData();
+            $longitude = $sortieForm->get('longitude')-> getData();
+            //dd($sortieForm);
+            $ville -> setCodePostal($cpo);
+            $ville -> setNom($nomVille);
+            $lieu -> setRue($nomRue);
+            $lieu -> setLatitude($latitude);
+            $lieu -> setLongitude($longitude);
+
             $entityManager -> persist($sortie);
             $entityManager -> flush();
 

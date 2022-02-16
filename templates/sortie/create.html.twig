@@ -19,8 +19,9 @@
                 {{ form_row(sortieForm.duree) }}
                 {{ form_row(sortieForm.infosSortie) }}
 
-                {{ form_row(sortieForm.codePostal) }}
                 {{ form_row(sortieForm.ville) }}
+                <datalist id="list_villes"></datalist>
+                {{ form_row(sortieForm.codePostal) }}
                 {{ form_row(sortieForm.lieu) }}
                 {{ form_row(sortieForm.rue) }}
                 <datalist id="list_rues"></datalist>
@@ -68,6 +69,7 @@
             integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
             crossorigin="anonymous">
     </script>
-    <script src="../../public/js/scriptVilles.js"></script>
+    {# <script src="../../public/js/scriptVilles.js"></script> #}
+    <script src="../../public/js/SortieForm.js"></script>
 
 {% endblock %}
