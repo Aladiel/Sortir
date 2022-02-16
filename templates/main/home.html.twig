@@ -83,6 +83,10 @@
     </div>
 
     <div class="Container_Tab_Home">
+
+        {{ render(path('sortie_list', {max: 30})) }}
+
+  <!--
                 <table class="Table_home">
                     <thead>
                         <tr>
@@ -209,7 +213,7 @@
                          </tr>
                      </tbody>
                 </table>
-
+-->
 
         <div class="col">
             {% if is_granted("ROLE_USER") %}

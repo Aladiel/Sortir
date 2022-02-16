@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,11 +40,6 @@ class Sortie
     private $dateLimiteInscription;
 
     /**
-     * @ORM\Column(type="string", length=3)
-     */
-    private $nbInscriptionMax;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $infosSortie;
@@ -52,6 +49,41 @@ class Sortie
      * @ORM\JoinColumn(nullable=false)
      */
     private $lieu;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbInscriptionMax;
+
+    /**
+     * @ORM\Column(type="string", length=30, nullable=true)
+     */
+    private $organisateur;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $published;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $canceled;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="sorties")
+     */
+    private $campus;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="sorties")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,18 +138,6 @@ class Sortie
         return $this;
     }
 
-    public function getNbInscriptionMax(): ?string
-    {
-        return $this->nbInscriptionMax;
-    }
-
-    public function setNbInscriptionMax(string $nbInscriptionMax): self
-    {
-        $this->nbInscriptionMax = $nbInscriptionMax;
-
-        return $this;
-    }
-
     public function getInfosSortie(): ?string
     {
         return $this->infosSortie;
@@ -138,6 +158,90 @@ class Sortie
     public function setLieu(?Lieu $lieu): self
     {
         $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getNbInscriptionMax(): ?int
+    {
+        return $this->nbInscriptionMax;
+    }
+
+    public function setNbInscriptionMax(?int $nbInscriptionMax): self
+    {
+        $this->nbInscriptionMax = $nbInscriptionMax;
+
+        return $this;
+    }
+
+    public function getOrganisateur(): ?string
+    {
+        return $this->organisateur;
+    }
+
+    public function setOrganisateur(?string $organisateur): self
+    {
+        $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    public function getCanceled(): ?bool
+    {
+        return $this->canceled;
+    }
+
+    public function setCanceled(?bool $canceled): self
+    {
+        $this->canceled = $canceled;
+
+        return $this;
+    }
+
+    public function getCampus(): ?Campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?Campus $campus): self
+    {
+        $this->campus = $campus;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->users->removeElement($user);
 
         return $this;
     }

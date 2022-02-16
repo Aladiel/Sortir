@@ -1,0 +1,105 @@
+
+<div class="m-auto">
+    <h1 class="h1">Liste des Sorties :</h1>
+
+    <div>
+        <h2>Filtrer les sorties</h2>
+        <label for="">Le nom contient :
+            <input type="text">
+        </label>
+        <button class="btn btn-dark">Rechercher</button>
+    </div>
+    <table class="table table-hover border">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Date - Heure</th>
+            <th>Clôture</th>
+            <th>Places</th>
+            <th>État</th>
+            <th>Inscrit</th>
+            <th>Organisateur</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for sortie in sorties %}
+            {% if (sortie.published or sortie.organisateur == app.user.prenom or sortie.users.contains(app.user)) %}
+                <tr>
+                    <td>{{ sortie.nom }}</td>
+                    <td>{{ sortie.dateDebut|date('d/m/y - H:m') }}</td>
+                    <td>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
+                    <td>{{ sortie.nbInscriptionMax }}/{{ sortie.nbInscriptionMax + sortie.users.count }}</td>
+                    <td>
+                        {% if (sortie.canceled) %}
+                            Annulée
+                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
+                            Fermé
+                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') > "now"|date("d/m/Y")) %}
+                            Ouvert
+                            {% else %}
+                            En cours
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        {% if (sortie.users.contains(app.user)) %}
+                            x
+                        {% endif %}
+                    </td>
+                    <td>{{ sortie.organisateur }}</td>
+                    <td class="btn-group">
+                        {% if (sortie.organisateur == app.user.prenom) %}
+                            {% if (sortie.published) %}
+                                <a href="{{ path('sortie_details', {'id': sortie.id}) }}">
+                                    <button class="btn btn-primary">Afficher</button>
+                                </a>
+                                {% if (sortie.canceled) or (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
+
+                                {% else %}
+                                <a href="{{ path('sortie_annuler', {'id': sortie.id}) }}">
+                                    <button class="btn btn-danger">Annuler</button>
+                                </a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ path('sortie_modifer', {'id': sortie.id}) }}">
+                                    <button class="btn btn-warning">Modifier</button>
+                                </a>
+                                <form method="post" action="{{ path('sortie_publier', {'id': sortie.id}) }}"
+                                      onsubmit="return confirm('Êtes-vous sûr de vouloir publier cette sortie ?');">
+                                    <button type="submit" class="btn btn-primary">Publier</button>
+                                </form>
+                            {% endif %}
+                        {% else %}
+                            <a href="{{ path('sortie_details', {'id': sortie.id}) }}">
+                                <button class="btn btn-primary">Afficher</button>
+                            </a>
+                            {% if (sortie.users.contains(app.user)) %}
+                                <form method="post" action="{{ path('sortie_desister', {'id': sortie.id, 'idu': app.user.id}) }}"
+                                      onsubmit="return confirm('Êtes-vous sûr de vouloir vous désister pour cette sortie ?');">
+                                    <button type="submit" class="btn btn-warning">Se désister</button>
+                                </form>
+                            {% elseif (sortie.canceled) or (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
+
+                            {% else %}
+                                <form method="post" action="{{ path('sortie_participer', {'id': sortie.id, 'idu': app.user.id}) }}"
+                                      onsubmit="return confirm('Êtes-vous sûr de vouloir participer à cette sortie ?');">
+                                    <button type="submit" class="btn btn-warning">Participer</button>
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td>Aucune Sortie trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('sortie_creer', {'idu': app.user.id}) }}" >
+        <button class="btn btn-light">Créer (autre formulaire)</button>
+    </a>
+</div>

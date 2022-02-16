@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% form_theme cancelForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Annuler Sortie | {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <div class="container m-auto w-50">
+        {{ form_start(cancelForm) }}
+        <h1 class="h1 text-center">Annuler la sortie :</h1>
+        {{ form_widget(cancelForm) }}
+        <button type="submit" class="btn btn-primary">
+            {{ button_label|default('Enregistrer') }}
+        </button>
+        <a href="{{ path('sortie_details', {'id': sortie.id}) }}" class="btn btn-light">
+            Annuler
+        </a>
+        {{ form_end(cancelForm) }}
+    </div>
+
+{% endblock %}
+

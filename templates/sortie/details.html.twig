@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails sortie | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="m-auto w-75">
+        <h1 class="h1 text-center p-2">Sortie : {{ sortie.nom }} </h1>
+
+        <div class="m-auto d-flex justify-content-between p-3">
+            <div class="">
+                <p>Nom de la sortie : {{ sortie.nom }}</p>
+                <p>Date et heure : {{ sortie.dateDebut|date('d/m/y - H:m') }}</p>
+                <p>Date limite d'inscription : {{ sortie.dateLimiteInscription|date('d/m/y') }}</p>
+                <p>Nb de Places : {{ sortie.nbInscriptionMax }}/{{ sortie.nbInscriptionMax + sortie.users.count }}</p>
+                <p>Durée : {{ sortie.duree }} minutes</p>
+                <p>Description et infos : {{ sortie.infosSortie }}</p>
+            </div>
+            <div>
+                <p>Campus : {{ sortie.campus.name }}</p>
+                <p>Lieu : </p>
+                <p>Rue : </p>
+                <p>Code postal : </p>
+                <p>Latitude : </p>
+                <p>Longitude : </p>
+            </div>
+        </div>
+
+        <div class="text-left w-50">
+            <h2>Liste des participants : </h2>
+            <div class="border">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in sortie.users %}
+                    <tr>
+                        <td>{{ user.prenom }} {{ user.nom|upper }}</td>
+                    </tr>
+                    {% else %}
+                        <tr>
+                            <td>Aucun participant trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-auto d-flex justify-content-around p-5">
+        <div class="btn-group">
+            {% if (sortie.users.contains(app.user)) %}
+                <form method="post" action="{{ path('sortie_desister', {'id': sortie.id, 'idu': app.user.id}) }}"
+                      onsubmit="return confirm('Êtes-vous sûr de vouloir vous désister pour cette sortie ?');">
+                    <button type="submit" class="btn btn-warning">Se désister</button>
+                </form>
+            {% elseif (sortie.canceled) %}
+                SORTIE ANNULÉE
+            {% else %}
+                <form method="post" action="{{ path('sortie_participer', {'id': sortie.id, 'idu': app.user.id}) }}"
+                      onsubmit="return confirm('Êtes-vous sûr de vouloir participer à cette sortie ?');">
+                    <button type="submit" class="btn btn-info">Participer</button>
+                </form>
+            {% endif %}
+        </div>
+
+        <div class="btn-group">
+            {% if (sortie.organisateur == app.user.prenom) %}
+            <a href="{{ path('sortie_modifer', {'id': sortie.id}) }}">
+                <button class="btn btn-info">Modifier</button>
+            </a>
+                {% if (sortie.published) %}
+                    {% if (sortie.canceled) %}
+                    {% else %}
+                        <a href="{{ path('sortie_annuler', {'id': sortie.id}) }}">
+                            <button class="btn btn-warning">Annuler</button>
+                        </a>
+                        <form method="post" action="{{ path('sortie_supprimer', {'id': sortie.id}) }}"
+                              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette sortie ?');">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    {% endif %}
+                {% else %}
+                    <form method="post" action="{{ path('sortie_publier', {'id': sortie.id}) }}"
+                          onsubmit="return confirm('Êtes-vous sûr de vouloir publier cette sortie ?');">
+                        <button type="submit" class="btn btn-primary">Publier</button>
+                    </form>
+                    <form method="post" action="{{ path('sortie_supprimer', {'id': sortie.id}) }}"
+                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette sortie ?');">
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <a href="{{ path('main_home') }}">
+            <button class="btn btn-light" >Retour</button>
+        </a>
+    </div>
+
+{% endblock %}
+
