@@ -58,12 +58,26 @@ class SortieType extends AbstractType
                 'mapped' => false,
                 'placeholder' => "---"
             ])
-            ->add('lieu', EntityType::class, [
+            ->add('lieu', ChoiceType::class, [
+                'label' => 'Lieu :',
+                'choices' => [
+                    'Montagne' => 'Montagne',
+                    'Picnic' => 'Picnic',
+                    'Restaurant' => 'Restaurant',
+                    'Piscine' => 'Piscine',
+                    'Plage' => 'Plage'
+                ],
+                'required' => false
+            ])
+            /*->add('lieu', EntityType::class, [
                 'label' => 'Lieu : ',
                 'class' => Lieu::class,
                 'choice_label' => 'nom',
-                'required' => false
-            ])
+                'required' => false,
+                'choices' => [
+
+                ]
+            ])*/
             ->add('rue', TextType::class, [
                 'label' => 'Rue : ',
                 'mapped' => false,
@@ -81,7 +95,7 @@ class SortieType extends AbstractType
             ])
         ;
 
-        $formModifier = function (FormInterface $form, Ville $ville = null) {
+        $formModifierCpo = function (FormInterface $form, Ville $ville = null) {
             $zipcodes = (null === $ville) ? [] : $ville->getCodePostal();
             $form -> add('codePostal', EntityType::class, [
                 'class' => Ville::class,
@@ -98,11 +112,12 @@ class SortieType extends AbstractType
 
         $builder->get('ville')->addEventListener(
             FormEvents::POST_SUBMIT,
-            function(FormEvent $event) use ($formModifier) {
+            function(FormEvent $event) use ($formModifierCpo) {
                 $ville = $event->getForm()->getData();
-                $formModifier($event->getForm()->getParent(), $ville);
+                $formModifierCpo($event->getForm()->getParent(), $ville);
             }
         );
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
