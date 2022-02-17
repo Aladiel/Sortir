@@ -19,6 +19,9 @@
                 {{ form_row(sortieForm.duree) }}
                 {{ form_row(sortieForm.infosSortie) }}
 
+
+            </div>
+            <div class="Side_droite_sortie">
                 {{ form_row(sortieForm.ville) }}
                 <datalist id="list_villes"></datalist>
                 {{ form_row(sortieForm.codePostal) }}
@@ -29,26 +32,8 @@
                 {{ form_row(sortieForm.longitude) }}
 
 
-                    <button type="submit">Submit</button>
+                <button type="submit">Submit</button>
                 {{ form_end(sortieForm) }}
-            </div>
-            <div class="Side_droite_sortie">
-                {# <div class="Form_sortie2">
-                    {{ form_start(lieuForm) }}
-
-                    {{ form_widget(lieuForm) }}
-
-
-                    {{ form_end(lieuForm) }}
-                </div>
-                <div class="Form_sortie3">
-                    {{ form_start(villeForm) }}
-
-                    {{ form_widget(villeForm) }}
-                    <div style="display: none; color: #f55;" id="error-message"></div>
-
-                    {{ form_end(villeForm) }}
-                </div>#}
             </div>
         </div>
 
