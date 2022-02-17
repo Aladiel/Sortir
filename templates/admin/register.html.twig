@@ -10,10 +10,12 @@
             {{ form_widget(registrationForm) }}
         {{ form_end(registrationForm) }}
         <div class="Buttons_Form_register">
-        <button type="submit" class="btn1FormRegister">Créer</button>
-        <a href="{{ path('users_list') }}" class="btn Tab_Campus_Admin_btn2">
-            Annuler
-        </a>
+            <button type="submit" class="btn1FormRegister">
+                Créer
+            </button>
+            <button type="reset" onclick="history.back()" class="Creer_Campus_Admin_btn1">
+                Annuler
+            </button>
         </div>
     </div>
 {% endblock %}

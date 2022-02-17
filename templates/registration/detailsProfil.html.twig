@@ -23,9 +23,9 @@
                         <a href="{{ path('modifier_profil', {'id': user.id}) }}">
                         <button class="btn1profil" type="submit">Modifier</button>
                         </a>
-                        <a href="{{ path('main_home') }}" >
-                        <button class="btn2profil">Retour</button>
-                        </a>
+                        <button onclick="history.back()" class="btn2profil">
+                            Retour
+                        </button>
                         <button class="btn3profil" onclick="document.getElementById('modal-suppr').style.display='block'">
                             Supprimer
                         </button>

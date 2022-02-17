@@ -9,7 +9,9 @@
         </label>
         <button class="btn btn-dark">Rechercher</button>
     </div>
-    <table class="table border text-white">
+
+
+    <table class="Table_home">
         <thead>
         <tr>
             <th>Nom</th>
@@ -48,43 +50,43 @@
                         {% endif %}
                     </td>
                     <td>{{ sortie.organisateur }}</td>
-                    <td class="btn-group">
+                    <td>
                         {% if (sortie.organisateur == app.user.prenom) %}
                             {% if (sortie.published) %}
                                 <a href="{{ path('sortie_details', {'id': sortie.id}) }}">
-                                    <button class="btn btn-primary">Afficher</button>
+                                    <button class="Tab_Campus_Admin_btn1">Afficher</button>
                                 </a>
                                 {% if (sortie.canceled) or (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
 
                                 {% else %}
                                 <a href="{{ path('sortie_annuler', {'id': sortie.id}) }}">
-                                    <button class="btn btn-danger">Annuler</button>
+                                    <button class="btnSupprimerCampus">Annuler</button>
                                 </a>
                                 {% endif %}
                             {% else %}
                                 <a href="{{ path('sortie_modifer', {'id': sortie.id}) }}">
-                                    <button class="btn btn-warning">Modifier</button>
+                                    <button class="Tab_Campus_Admin_btn2">Modifier</button>
                                 </a>
                                 <form method="post" action="{{ path('sortie_publier', {'id': sortie.id}) }}"
                                       onsubmit="return confirm('Êtes-vous sûr de vouloir publier cette sortie ?');">
-                                    <button type="submit" class="btn btn-primary">Publier</button>
+                                    <button type="submit" class="Tab_Campus_Admin_btn1">Publier</button>
                                 </form>
                             {% endif %}
                         {% else %}
                             <a href="{{ path('sortie_details', {'id': sortie.id}) }}">
-                                <button class="btn btn-primary">Afficher</button>
+                                <button class="Tab_Campus_Admin_btn1">Afficher</button>
                             </a>
                             {% if (sortie.users.contains(app.user)) %}
                                 <form method="post" action="{{ path('sortie_desister', {'id': sortie.id, 'idu': app.user.id}) }}"
                                       onsubmit="return confirm('Êtes-vous sûr de vouloir vous désister pour cette sortie ?');">
-                                    <button type="submit" class="btn btn-warning">Se désister</button>
+                                    <button type="submit" class="Tab_Campus_Admin_btn2">Se désister</button>
                                 </form>
                             {% elseif (sortie.canceled) or (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
 
                             {% else %}
                                 <form method="post" action="{{ path('sortie_participer', {'id': sortie.id, 'idu': app.user.id}) }}"
                                       onsubmit="return confirm('Êtes-vous sûr de vouloir participer à cette sortie ?');">
-                                    <button type="submit" class="btn btn-warning">Participer</button>
+                                    <button type="submit" class="Tab_Campus_Admin_btn1">Participer</button>
                                 </form>
                             {% endif %}
                         {% endif %}
@@ -100,6 +102,6 @@
     </table>
 
     <a href="{{ path('ville_creer') }}" >
-        <button class="btn btn-light">Créer (autre formulaire)</button>
+        <button class="btn1Home">Créer (autre formulaire)</button>
     </a>
 </div>
