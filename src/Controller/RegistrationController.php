@@ -87,15 +87,12 @@ class RegistrationController extends AbstractController
         $data = new User();
         $form = $this->createForm(SearchType::class, $data);
         $form ->handleRequest($request);
-        //$names =$userRepository->findSearch($data);
+        $names =$userRepository->findSearch($data);
 
         return $this->render('admin/userslist.html.twig', [
             'form' => $form->createView(),
-            'names' => $userRepository->findBy(
-                ['nom' => 'Keyboard']
-            ),
             'users' => $userRepository->findAll(),
-            //'names' => $names
+            'names' => $names
         ]);
     }
 
