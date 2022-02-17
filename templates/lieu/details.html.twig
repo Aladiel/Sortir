@@ -42,6 +42,11 @@
 
     <div class="m-auto d-flex justify-content-around p-5">
         <div class="btn-group">
+            <a href="{{ path('sortie_creer', {'idu': app.user.id, 'idl': lieu.id}) }}">
+                <button class="btn btn-primary">
+                    Choisir
+                </button>
+            </a>
             <a href="{{ path('lieu_modifer', {'id': lieu.id}) }}">
                 <button class="btn btn-info">Modifier</button>
             </a>

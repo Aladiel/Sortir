@@ -29,7 +29,11 @@
                 <td>{{ lieu.rue }}</td>
                 <td>{{ lieu.ville.codePostal }}, {{ lieu.ville.nom }}</td>
                 <td>
-                    <a href="{{ path('sortie_creer', {'idu': app.user.id, 'idl': lieu.id}) }}">Choisir</a>
+                    <a href="{{ path('sortie_creer', {'idu': app.user.id, 'idl': lieu.id}) }}">
+                        <button class="Tab_Campus_Admin_btn1">
+                            Choisir
+                        </button>
+                    </a>
                     <a href="{{ path('lieu_details', {'id': lieu.id}) }}">
                         <button class="Tab_Campus_Admin_btn1">Afficher</button>
                     </a>

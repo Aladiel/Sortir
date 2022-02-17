@@ -28,7 +28,11 @@
                     <td>{{ ville.nom }}</td>
                     <td>{{ ville.codePostal }}</td>
                     <td>
-                        <a href="{{ path('lieu_creer', {'idv': ville.id}) }}">Choisir</a>
+                        <a href="{{ path('lieu_creer', {'idv': ville.id}) }}">
+                            <button class="Tab_Campus_Admin_btn1">
+                                Choisir
+                            </button>
+                        </a>
                         <a href="{{ path('ville_details', {'id': ville.id}) }}">
                             <button class="Tab_Campus_Admin_btn1">Afficher</button>
                         </a>
