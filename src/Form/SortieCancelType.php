@@ -17,10 +17,10 @@ class SortieCancelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
+            ->add('nom', TextType::class, [
                 'label' => 'Nom de la sortie : '
             ])
-            ->add('dateHeure', DateTimeType::class, [
+            ->add('dateDebut', DateTimeType::class, [
                 'label' => 'Date de la sortie : ',
                 'html5' => true,
                 'widget' => 'single_text'
