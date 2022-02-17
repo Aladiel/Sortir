@@ -80,7 +80,7 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/admin/list", name="users_list", methods={"GET"})
+     * @Route("/admin/list", name="users_list", methods={"GET", "POST"})
      */
     public function list(UserRepository $userRepository, Request $request): Response
     {

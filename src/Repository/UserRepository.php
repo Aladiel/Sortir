@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -39,25 +40,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     /**
      * Returns an array of User objects
-    * @return User []
-    */
+     * @param User $search
+     * @return array
+     */
 
     public function findSearch(User $search): array
     {
-        $query = $this
-            ->createQueryBuilder('u');
-            /*->setParameter('val', $search)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10);
+          $query = $this
+              ->createQueryBuilder('n');
 
-
-       /* if (!empty($search->getNom())) {
+                if (!empty($search->names)) {
                 $query = $query
-                    ->andWhere('u.name LIKE :nom')
-                    ->setParameter('nom', "%{$search->getNom()}%");
-        }*/
+                    ->andWhere('names.nom LIKE :nom')
+                    ->setParameter('nom', "%{$search->names}%");
+                }
 
-        return $query->getQuery()->getResult();
+                return $query->getQuery()->getResult();
+
     }
 
 
