@@ -87,10 +87,12 @@ class RegistrationController extends AbstractController
         $data = new User();
         $form = $this->createForm(SearchType::class, $data);
         $form ->handleRequest($request);
+        $names =$userRepository->findSearch($data);
 
         return $this->render('admin/userslist.html.twig', [
             'form' => $form->createView(),
             'users' => $userRepository->findAll(),
+            'names' => $names
         ]);
     }
 
@@ -172,7 +174,8 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function delete(User $user, EntityManagerInterface $entityManager) {
+    public function delete(User $user, EntityManagerInterface $entityManager): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
 
         $entityManager -> remove($user);
         $entityManager -> flush();
