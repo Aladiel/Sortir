@@ -61,9 +61,9 @@
                     <button type="submit" class="btn btn-warning">Se désister</button>
                 </form>
             {% elseif (sortie.canceled) %}
-                SORTIE ANNULÉE
-            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
-                INSCRIPTIONS CLÔTURÉES
+                ⚠️ SORTIE ANNULÉE
+            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")  or sortie.nbInscriptionMax < 1) %}
+                🚫 INSCRIPTIONS CLÔTURÉES
             {% else %}
                 <form method="post" action="{{ path('sortie_participer', {'id': sortie.id, 'idu': app.user.id}) }}"
                       onsubmit="return confirm('Êtes-vous sûr de vouloir participer à cette sortie ?');">

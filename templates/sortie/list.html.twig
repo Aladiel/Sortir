@@ -36,7 +36,7 @@
                     <td>
                         {% if (sortie.canceled) %}
                             Annulée
-                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
+                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y") or sortie.nbInscriptionMax < 1) %}
                             Fermé
                             {% elseif (sortie.dateLimiteInscription|date('d/m/Y') > "now"|date("d/m/Y")) %}
                             Ouvert
@@ -56,7 +56,7 @@
                                 <a href="{{ path('sortie_details', {'id': sortie.id}) }}">
                                     <button class="Tab_Campus_Admin_btn1">Afficher</button>
                                 </a>
-                                {% if (sortie.canceled) or (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
+                                {% if (sortie.canceled or sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
 
                                 {% else %}
                                 <a href="{{ path('sortie_annuler', {'id': sortie.id}) }}">
@@ -81,7 +81,7 @@
                                       onsubmit="return confirm('Êtes-vous sûr de vouloir vous désister pour cette sortie ?');">
                                     <button type="submit" class="Tab_Campus_Admin_btn2">Se désister</button>
                                 </form>
-                            {% elseif (sortie.canceled) or (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")) %}
+                            {% elseif (sortie.canceled or sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y")  or sortie.nbInscriptionMax < 1) %}
 
                             {% else %}
                                 <form method="post" action="{{ path('sortie_participer', {'id': sortie.id, 'idu': app.user.id}) }}"
