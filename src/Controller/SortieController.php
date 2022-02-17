@@ -7,6 +7,7 @@ use App\Entity\Sortie;
 use App\Entity\User;
 use App\Entity\Ville;
 use App\Form\SortieCancelType;
+use App\Form\SortieCreerType;
 use App\Form\SortieType;
 use App\Repository\SortieRepository;
 use App\Repository\UserRepository;
@@ -84,7 +85,7 @@ class SortieController extends AbstractController
         $user = new User();
         $user = $userRepository->find($idu);
 
-        $sortieForm = $this->createForm(SortieType::class, $sortie);
+        $sortieForm = $this->createForm(SortieCreerType::class, $sortie);
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
@@ -120,7 +121,7 @@ class SortieController extends AbstractController
     public function modifier(Request $request, Sortie $sortie,
                              EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(SortieType::class, $sortie);
+        $form = $this->createForm(SortieCreerType::class, $sortie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -191,7 +192,7 @@ class SortieController extends AbstractController
             $this->addFlash('success', 'Votre participation est bien prise en compte !');
         } else
         {
-            $this->addFlash('error', 'Action refusée : Vous participez déjà à cette sortie !');
+            $this->addFlash('warning', 'Action refusée : Vous participez déjà à cette sortie !');
         }
 
         return $this->redirectToRoute('sortie_details', ['id' => $sortie->getId()]);
@@ -221,7 +222,7 @@ class SortieController extends AbstractController
             $this->addFlash('success', 'Vous avez bien été retiré de cette sortie !');
         } else
         {
-            $this->addFlash('erroe', 'Action refusée : Vous ne participez pas à cette sortie !');
+            $this->addFlash('warning', 'Action refusée : Vous ne participez pas à cette sortie !');
         }
 
         return $this->redirectToRoute('sortie_details', ['id' => $sortie->getId()]);
@@ -247,7 +248,7 @@ class SortieController extends AbstractController
             $this->addFlash('success', 'Votre sortie a bien été publiée !');
         } else
         {
-            $this->addFlash('erroe', 'Action refusée : Votre sortie est déjà publiée !');
+            $this->addFlash('warning', 'Action refusée : Votre sortie est déjà publiée !');
         }
 
         return $this->redirectToRoute('main_home');

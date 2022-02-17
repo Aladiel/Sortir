@@ -28,7 +28,6 @@ class Ville
 
     /**
      * @ORM\Column(type="string", length=5)
-     * @Assert\Regex("\d{2}[ ]?\d{3}")
      */
     private $codePostal;
 
