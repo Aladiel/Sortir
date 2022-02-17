@@ -7,7 +7,10 @@ use App\Entity\User;
 use App\Entity\Ville;
 use App\Form\LieuType;
 use App\Form\VilleType;
+use App\Repository\LieuRepository;
 use App\Repository\UserRepository;
+use App\Repository\VilleRepository;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,53 +18,46 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/lieu", name="lieu_")
+ */
 class LieuController extends AbstractController
 {
     /**
-     * @Route("/ville", name="ville_creer", methods={"GET", "POST"})
+     * @Route("/", name="list", methods={"GET"})
      */
-    public function villeCreer(Request $request, EntityManagerInterface $entityManager): Response
+    public function list(LieuRepository $lieuRepository): Response
     {
-        $ville = new Ville();
-
-        $villeForm = $this->createForm(VilleType::class, $ville);
-        $villeForm->handleRequest($request);
-
-        if ($villeForm->isSubmitted() && $villeForm->isValid())
-        {
-            $entityManager->persist($ville);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'La ville a bien été créée');
-            return $this->redirectToRoute('lieu_creer');
-        } elseif ($villeForm->isSubmitted() && !$villeForm->isValid())
-        {
-            $this->addFlash('warning', 'La ville n\'a pas été créée');
-        }
-        return $this->render('ville/creer.html.twig', [
-            'villeForm' => $villeForm->createView()
+        return $this->render('lieu/list.html.twig', [
+            'lieux' => $lieuRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/lieu", name="lieu_creer", methods={"GET", "POST"})
+     * @Route("/{idv}/creer", name="creer", methods={"GET", "POST"})
      */
     public function lieuCreer(Request $request, EntityManagerInterface $entityManager,
-                                UserRepository $userRepository): Response
+                                int $idv, VilleRepository $villeRepository): Response
     {
         $lieu = new Lieu();
+
+        $ville = new Ville();
+        $ville = $villeRepository->find($idv);
 
         $lieuForm = $this->createForm(LieuType::class, $lieu);
         $lieuForm->handleRequest($request);
 
         if ($lieuForm->isSubmitted() && $lieuForm->isValid())
         {
+            $lieu->setVille($ville);
             $entityManager->persist($lieu);
             $entityManager->flush();
 
             $this->addFlash('success', 'Le lieu a bien été créée');
 
-            return $this->redirectToRoute('lieu_creer');
+            return $this->redirectToRoute('lieu_creer', [
+                'idv' => $lieu->getVille()->getId()
+            ]);
         } elseif ($lieuForm->isSubmitted() && !$lieuForm->isValid())
         {
             $this->addFlash('warning', 'Le lieu n\'a pas été créée');
@@ -70,4 +66,70 @@ class LieuController extends AbstractController
             'lieuForm' => $lieuForm->createView()
         ]);
     }
+
+    /**
+     * @Route("/{id}", name="details", methods={"GET"})
+     */
+    public function details(Lieu $lieu): Response
+    {
+        return $this->render('lieu/details.html.twig', [
+            'lieu' => $lieu,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/modifier", name="modifer", methods={"GET", "POST"})
+     */
+    public function modifier(Request $request, Lieu $lieu,
+                             EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(LieuType::class, $lieu);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La sortie a bien été modifiée !');
+            return $this->redirectToRoute('lieu_details', ['id' => $lieu->getId()]);
+        } elseif ($form->isSubmitted() && !$form->isValid())
+        {
+            $this->addFlash('warning', 'La sortie n\a pas été modifiée !');
+        }
+        return $this->renderForm('lieu/modifier.html.twig', [
+            'lieu' => $lieu,
+            'form' => $form,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="supprimer", methods={"POST"})
+     */
+    public function supprimer(Request $request, int $id,
+                              LieuRepository $lieuRepository,
+                              EntityManagerInterface $entityManager): Response
+    {
+        $lieu = new Lieu();
+        $lieu = $lieuRepository->find($id);
+
+        try {
+            $entityManager->remove($lieu);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le lieu a bien été supprimée !');
+            return $this->redirectToRoute('lieu_creer', [
+                'idv' => $lieu->getVille()->getId()
+            ],
+                Response::HTTP_SEE_OTHER);
+        } catch (ForeignKeyConstraintViolationException $f) {
+            $this->addFlash('foreignkey_constraint_violation', sprintf(
+                'Le lieu ne peut pas être supprimé car il est lié à une ou plusieurs sorties - 
+                foreignkey_constraint_violation : Code %s',
+                $f->getCode()
+            ));
+
+            return $this->redirectToRoute('lieu_details', ['id' => $lieu->getId()]);
+        }
+    }
+
 }

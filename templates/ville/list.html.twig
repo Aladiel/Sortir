@@ -1,0 +1,47 @@
+
+<div class="m-auto">
+    <h1 class="h1">Liste des villes :</h1>
+
+    <div>
+        <h2>Filtrer les villes</h2>
+        <label for="">Le nom contient :
+            <input type="text">
+        </label>
+        <button class="btn btn-dark">Rechercher</button>
+    </div>
+
+
+    <table class="Table_home">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Code Postal</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for ville in villes %}
+                <tr>
+                    <td>{{ ville.id }}</td>
+                    <td>{{ ville.nom }}</td>
+                    <td>{{ ville.codePostal }}</td>
+                    <td>
+                        <a href="{{ path('lieu_creer', {'idv': ville.id}) }}">Choisir</a>
+                        <a href="{{ path('ville_details', {'id': ville.id}) }}">
+                            <button class="Tab_Campus_Admin_btn1">Afficher</button>
+                        </a>
+                        <a href="{{ path('ville_modifer', {'id': ville.id}) }}">
+                            <button class="Tab_Campus_Admin_btn2">Modifier</button>
+                        </a>
+                    </td>
+                </tr>
+        {% else %}
+            <tr>
+                <td>Aucune ville trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

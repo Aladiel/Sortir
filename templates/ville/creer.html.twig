@@ -6,16 +6,18 @@
 {% endblock %}
 
 {% block body %}
+
+    <div class="m-auto justify-content-center w-50">
+        {{ render(path('ville_list', {max: 30})) }}
+    </div>
+
     <div class="m-auto w-50">
         {{ form_start(villeForm) }}
-        <h1 class="h1">Entrez une ville :</h1>
+        <h1 class="h1">Créez une ville :</h1>
         {{ form_widget(villeForm) }}
         <button type="submit" class="btn btn-primary">
             {{ button_label|default('Enregistrer') }}
         </button >
-        <a href="{{ path('lieu_creer') }}" class="btn btn-warning">
-            Passer
-        </a>
         <a href="{{ path('main_home') }}" class="btn btn-warning">
             Annuler
         </a>

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails ville | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="m-auto w-75">
+        <h1 class="h1 text-center p-2">Ville : {{ ville.nom }} </h1>
+
+        <p>Nom de la ville : {{ ville.nom }}</p>
+        <p>Code Postal : {{ ville.codePostal }}</p>
+
+        <div class="text-left w-50">
+            <h2>Liste des lieux : </h2>
+            <div class="border">
+                <table class="table text-white">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for lieu in ville.lieux %}
+                        <tr>
+                            <td>{{ lieu.nom }} {{ lieu.rue }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>Aucun lieu trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-auto d-flex justify-content-around p-5">
+
+        <div class="btn-group">
+            <a href="{{ path('lieu_creer', {'idv': ville.id}) }}">Choisir</a>
+            <a href="{{ path('ville_modifer', {'id': ville.id}) }}">
+                <button class="btn btn-info">Modifier</button>
+            </a>
+            <form method="post" action="{{ path('ville_supprimer', {'id': ville.id}) }}"
+                  onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette ville ?');">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+
+        <a href="{{ path('ville_list') }}">
+            <button class="btn btn-light" >Retour</button>
+        </a>
+    </div>
+
+{% endblock %}
+

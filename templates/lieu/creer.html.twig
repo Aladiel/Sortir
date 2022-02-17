@@ -6,17 +6,19 @@
 {% endblock %}
 
 {% block body %}
+
+    <div class="m-auto justify-content-center w-75">
+        {{ render(path('lieu_list', {max: 30})) }}
+    </div>
+
     <div class="m-auto w-50">
         {{ form_start(lieuForm) }}
-        <h1 class="h1">Entrez un lieu :</h1>
+        <h1 class="h1">Créez un lieu :</h1>
         {{ form_widget(lieuForm) }}
         <button type="submit" class="btn btn-primary">
             {{ button_label|default('Enregistrer') }}
         </button >
-        <a href="{{ path('sortie_creer', {'idu': app.user.id}) }}" class="btn btn-warning">
-            Créer une sortie
-        </a>
-        <a href="{{ path('main_home') }}" class="btn btn-warning">
+        <a href="{{ path('ville_creer') }}" class="btn btn-warning">
             Annuler
         </a>
         {{ form_end(lieuForm) }}

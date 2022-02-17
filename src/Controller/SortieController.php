@@ -9,6 +9,7 @@ use App\Entity\Ville;
 use App\Form\SortieCancelType;
 use App\Form\SortieCreerType;
 use App\Form\SortieType;
+use App\Repository\LieuRepository;
 use App\Repository\SortieRepository;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
@@ -74,10 +75,11 @@ class SortieController extends AbstractController
     }
 
     /**
-     * @Route("/{idu}/creer", name="creer", methods={"GET", "POST"})
+     * @Route("/{idu}/{idl}/creer", name="creer", methods={"GET", "POST"})
      */
-    public function creer(Request $request, int $idu,
+    public function creer(Request $request, int $idu, int $idl,
                           UserRepository $userRepository,
+                          LieuRepository $lieuRepository,
                           EntityManagerInterface $entityManager): Response
     {
         $sortie = new Sortie();
@@ -85,12 +87,16 @@ class SortieController extends AbstractController
         $user = new User();
         $user = $userRepository->find($idu);
 
+        $lieu = new Lieu();
+        $lieu = $lieuRepository->find($idl);
+
         $sortieForm = $this->createForm(SortieCreerType::class, $sortie);
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
             $sortie->setOrganisateur($user->getPrenom());
+            $sortie->setLieu($lieu);
             $entityManager->persist($sortie);
             $entityManager->flush();
 
