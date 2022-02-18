@@ -1,53 +1,57 @@
 
-<div class="m-auto">
-    <h1 class="h1">Liste des lieux :</h1>
+<div class="Villes_Admin pb-5">
+    <div class="w-75 m-auto justify-content-center">
 
-    <div>
-        <h2>Filtrer les lieux</h2>
-        <label for="">Le nom contient :
-            <input type="text">
-        </label>
-        <button class="btn btn-dark">Rechercher</button>
+        <div class="m-auto">
+            <h1 class="h1">Liste des lieux :</h1>
+
+            <div>
+                <h2>Filtrer les lieux</h2>
+                <label for="">Le nom contient :
+                    <input type="text">
+                </label>
+                <button class="btn btn-dark">Rechercher</button>
+            </div>
+
+            <table class="Tab_Villes_Admin">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Rue</th>
+                    <th>Ville</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for lieu in lieux %}
+                    <tr>
+                        <td>{{ lieu.id }}</td>
+                        <td>{{ lieu.nom }}</td>
+                        <td>{{ lieu.rue }}</td>
+                        <td>{{ lieu.ville.codePostal }}, {{ lieu.ville.nom }}</td>
+                        <td>
+                            <a href="{{ path('sortie_creer', {'idu': app.user.id, 'idl': lieu.id}) }}">
+                                <button class="Tab_Campus_Admin_btn1">
+                                    Choisir
+                                </button>
+                            </a>
+                            <a href="{{ path('lieu_details', {'id': lieu.id}) }}">
+                                <button class="Tab_Campus_Admin_btn1">Afficher</button>
+                            </a>
+                            <a href="{{ path('lieu_modifer', {'id': lieu.id}) }}">
+                                <button class="Tab_Campus_Admin_btn2">Modifier</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Aucune lieu trouvée</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-
-    <table class="Table_home">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Rue</th>
-            <th>Ville</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        {% for lieu in lieux %}
-            <tr>
-                <td>{{ lieu.id }}</td>
-                <td>{{ lieu.nom }}</td>
-                <td>{{ lieu.rue }}</td>
-                <td>{{ lieu.ville.codePostal }}, {{ lieu.ville.nom }}</td>
-                <td>
-                    <a href="{{ path('sortie_creer', {'idu': app.user.id, 'idl': lieu.id}) }}">
-                        <button class="Tab_Campus_Admin_btn1">
-                            Choisir
-                        </button>
-                    </a>
-                    <a href="{{ path('lieu_details', {'id': lieu.id}) }}">
-                        <button class="Tab_Campus_Admin_btn1">Afficher</button>
-                    </a>
-                    <a href="{{ path('lieu_modifer', {'id': lieu.id}) }}">
-                        <button class="Tab_Campus_Admin_btn2">Modifier</button>
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td>Aucune lieu trouvée</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
 </div>

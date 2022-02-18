@@ -7,9 +7,7 @@
 
 {% block body %}
 
-    <div class="m-auto justify-content-center w-75">
-        {{ render(path('lieu_list', {max: 30})) }}
-    </div>
+    {{ render(path('lieu_list', {max: 30})) }}
 
     <div class="m-auto w-50">
         {{ form_start(lieuForm) }}

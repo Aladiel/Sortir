@@ -1,8 +1,8 @@
 # ENI-Sortir.com
 
-🖥️ Site internet nommé sortir.com d’organisation de sorties entre élèves, réalisé dans le cadre de la formation de "Développeur Web et Web Mobile" à l'[ENI - École Informatique](https://www.eni-ecole.fr/).
+🖥️ Site internet d’organisation de sorties entre élèves, nommé sortir.com, réalisé dans le cadre de la formation de "Développeur Web et Web Mobile" à l'[ENI - École Informatique](https://www.eni-ecole.fr/).
 
-🎇️ Analyse, conception et développement avec PHP avec Symfony et MySQL.
+🎇️ Analyse, conception et développement avec PHP, Symfony et MySQL.
 
 🤝 Contributeurs : Adrien Bodin, Jonathan Mougin, Julian Senechal et Daphné Duchêne.
 
@@ -20,7 +20,7 @@
 
 🌌 Problématique :
 
-Aujourd’hui, le Bureau des élèves (BDE) qui propose des activités hors du temps de formation ne communique que par
+Aujourd’hui, le Bureau des élèves (BDE), qui propose des activités hors du temps de formation, ne communique que par
 affichage papier
 
 • Temps important pour la création et la pose des affiches

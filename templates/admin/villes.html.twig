@@ -4,32 +4,6 @@
 
 {% block body %}
 
-    <div class="Villes_Admin">
-        <h1>Gérer les Villes</h1>
-        <div class="Filtrer_Villes_Admin">
-            <h2>Filtrer les sites</h2>
-            <label for="">Le nom contient :
-                <input type="text">
-            </label>
-            <button class="Filtrer_Villes_Admin_btn1">Rechercher</button>
-        </div>
-        <div class="Tab_Villes_Admin">
-            <table>
-                <thead>
-                <tr>
-                    <th>Ville</th>
-                    <th>Code postal</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Nantes</td>
-                        <td>44000</td>
-                        <td>Modifier - Supprimer</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    {{ render(path('ville_list', {max: 30})) }}
 
 {% endblock %}

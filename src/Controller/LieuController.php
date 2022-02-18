@@ -3,20 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Lieu;
-use App\Entity\User;
 use App\Entity\Ville;
 use App\Form\LieuType;
-use App\Form\VilleType;
 use App\Repository\LieuRepository;
-use App\Repository\UserRepository;
 use App\Repository\VilleRepository;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/lieu", name="lieu_")
@@ -37,7 +34,8 @@ class LieuController extends AbstractController
      * @Route("/{idv}/creer", name="creer", methods={"GET", "POST"})
      */
     public function lieuCreer(Request $request, EntityManagerInterface $entityManager,
-                                int $idv, VilleRepository $villeRepository): Response
+                                int $idv, VilleRepository $villeRepository,
+                                UserInterface $user): Response
     {
         $lieu = new Lieu();
 
@@ -55,8 +53,9 @@ class LieuController extends AbstractController
 
             $this->addFlash('success', 'Le lieu a bien été créée');
 
-            return $this->redirectToRoute('lieu_creer', [
-                'idv' => $lieu->getVille()->getId()
+            return $this->redirectToRoute('sortie_creer', [
+                'idu' => $user->getId(),
+                'idl' => $lieu->getId()
             ]);
         } elseif ($lieuForm->isSubmitted() && !$lieuForm->isValid())
         {
@@ -90,11 +89,11 @@ class LieuController extends AbstractController
         {
             $entityManager->flush();
 
-            $this->addFlash('success', 'La sortie a bien été modifiée !');
+            $this->addFlash('success', 'Le lieu a bien été modifiée !');
             return $this->redirectToRoute('lieu_details', ['id' => $lieu->getId()]);
         } elseif ($form->isSubmitted() && !$form->isValid())
         {
-            $this->addFlash('warning', 'La sortie n\a pas été modifiée !');
+            $this->addFlash('warning', 'Le lieu n\a pas été modifiée !');
         }
         return $this->renderForm('lieu/modifier.html.twig', [
             'lieu' => $lieu,

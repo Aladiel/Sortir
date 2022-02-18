@@ -82,7 +82,7 @@ class VilleController extends AbstractController
             return $this->redirectToRoute('ville_details', ['id' => $ville->getId()]);
         } elseif ($form->isSubmitted() && !$form->isValid())
         {
-            $this->addFlash('warning', 'La sortie n\a pas été modifiée !');
+            $this->addFlash('warning', 'La ville n\a pas été modifiée !');
         }
         return $this->renderForm('ville/modifier.html.twig', [
             'ville' => $ville,

@@ -1,14 +1,12 @@
 <nav class="Menu_nav">
     <ul>
-
-        {% if is_granted("ROLE_ADMIN") %}
-            <li class="nav-item"><a href="{{ path('users_list') }}" class="nav-link" >Alumni</a></li>
-            <li class="nav-item"><a href="{{ path('admin_villes') }}" class="nav-link" >Villes</a></li>
-            <li class="nav-item"><a href="{{ path('campus_list') }}" class="nav-link" >Campus</a></li>
-        {% endif %}
-
         {% if (app.user) %}
             <li class="nav-item"><a href="{{ path('main_home') }}" title="" class="nav-link" >Accueil</a></li>
+            {% if is_granted("ROLE_ADMIN") %}
+                <li class="nav-item"><a href="{{ path('users_list') }}" class="nav-link" >Alumni</a></li>
+                <li class="nav-item"><a href="{{ path('admin_villes') }}" class="nav-link" >Villes</a></li>
+                <li class="nav-item"><a href="{{ path('campus_list') }}" class="nav-link" >Campus</a></li>
+            {% endif %}
             <li class="nav-item"><a href="{{ path('details_profil', {'id': app.user.id}) }}" title="voir profil" class="nav-link">Mon profil</a></li>
             <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link" title="Clic to log out"><div class="a_logout">Logout</div></a></li>
         {% endif %}
