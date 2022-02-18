@@ -109,7 +109,7 @@ class CampusController extends AbstractController
         } catch (ForeignKeyConstraintViolationException $f) {
             $this->addFlash('foreignkey_constraint_violation', sprintf(
                 'Le campus ne peut pas être supprimé car il est lié à un alumnus - %s',
-                $f->getMessage()
+                $f->getCode()
             ));
 
             return $this->redirectToRoute('campus_list');
