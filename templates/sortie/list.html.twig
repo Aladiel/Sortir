@@ -28,7 +28,7 @@
                     <td>
                         {% if (sortie.canceled) %}
                             Annulée
-                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y") or sortie.nbInscriptionMax < 0) %}
+                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y") or sortie.nbInscriptionMax < 1) %}
                             Fermé
                             {% elseif (sortie.dateLimiteInscription|date('d/m/Y') > "now"|date("d/m/Y")) %}
                             Ouvert
