@@ -12,9 +12,9 @@
         <button type="submit" class="btn btn-primary">
             {{ button_label|default('Enregistrer') }}
         </button>
-        <a href="{{ path('sortie_details', {'id': sortie.id}) }}" class="btn btn-warning">
-            Annuler
-        </a>
+        <button TYPE="reset" onclick="history.back()" class="Modifier_Campus_Admin_btn1">
+            Retour
+        </button>
         {{ form_end(form) }}
     </div>
 

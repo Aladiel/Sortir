@@ -1,14 +1,6 @@
 
 <div class="m-auto">
-    <h1 class="h1">Liste des Sorties :</h1>
 
-    <div>
-        <h2>Filtrer les sorties</h2>
-        <label for="">Le nom contient :
-            <input type="text">
-        </label>
-        <button class="btn btn-dark">Rechercher</button>
-    </div>
 
 
     <table class="Table_home">
@@ -36,7 +28,7 @@
                     <td>
                         {% if (sortie.canceled) %}
                             Annulée
-                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y") or sortie.nbInscriptionMax < 1) %}
+                            {% elseif (sortie.dateLimiteInscription|date('d/m/Y') < "now"|date("d/m/Y") or sortie.nbInscriptionMax < 0) %}
                             Fermé
                             {% elseif (sortie.dateLimiteInscription|date('d/m/Y') > "now"|date("d/m/Y")) %}
                             Ouvert
@@ -101,7 +93,15 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ville_creer') }}" >
-        <button class="btn1Home">Créer (autre formulaire)</button>
-    </a>
+
+
+    <div class="col">
+        {% if is_granted("ROLE_USER") %}
+            <a href="{{ path('ville_creer') }}" >
+                <button class="btn1Home">Créer une sortie</button>
+            </a>
+        {% endif %}
+    </div>
+
+
 </div>
